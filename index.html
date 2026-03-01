@@ -432,7 +432,189 @@ body::before {
   100% { background-position: 200% center; }
 }
 
-/* === COMPLETION POPUP === */
+/* === RESOURCE BUTTONS === */
+.resources-bar {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+.res-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: 8px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: bold;
+  text-decoration: none;
+  border: 1px solid;
+  transition: all 0.25s;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.res-btn-striver {
+  background: rgba(255,69,0,0.12);
+  border-color: rgba(255,69,0,0.5);
+  color: #ff7c50;
+}
+.res-btn-striver:hover {
+  background: rgba(255,69,0,0.25);
+  border-color: var(--fire);
+  box-shadow: 0 0 18px rgba(255,69,0,0.3);
+}
+.res-btn-love {
+  background: rgba(0,245,255,0.08);
+  border-color: rgba(0,245,255,0.4);
+  color: var(--electric);
+}
+.res-btn-love:hover {
+  background: rgba(0,245,255,0.18);
+  border-color: var(--electric);
+  box-shadow: 0 0 18px rgba(0,245,255,0.25);
+}
+.res-btn-sheet {
+  background: rgba(255,215,0,0.08);
+  border-color: rgba(255,215,0,0.35);
+  color: var(--gold);
+}
+.res-btn-sheet:hover {
+  background: rgba(255,215,0,0.18);
+  border-color: var(--gold);
+  box-shadow: 0 0 18px rgba(255,215,0,0.25);
+}
+
+/* === COMPARISON TABLE === */
+.table-section {
+  background: var(--section-bg);
+  border: 1px solid rgba(255,215,0,0.1);
+  border-radius: 16px;
+  margin-bottom: 32px;
+  overflow: hidden;
+}
+.table-section-header {
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.table-section-header .ts-icon { font-size: 20px; }
+.table-section-header .ts-title {
+  font-family: 'Black Ops One', cursive;
+  font-size: 16px;
+  color: var(--gold);
+  letter-spacing: 1px;
+}
+.table-section-header .ts-sub {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  color: rgba(255,255,255,0.3);
+  margin-left: auto;
+  letter-spacing: 2px;
+}
+.cmp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.cmp-table th {
+  padding: 12px 20px;
+  text-align: left;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 3px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.cmp-table th:first-child { color: rgba(255,255,255,0.4); }
+.cmp-table th.col-s { color: #ff7c50; }
+.cmp-table th.col-l { color: var(--electric); }
+.cmp-table tr:hover td { background: rgba(255,255,255,0.025); }
+.cmp-table td {
+  padding: 11px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-weight: 600;
+  color: rgba(255,255,255,0.75);
+  transition: background 0.2s;
+}
+.cmp-table td:first-child { color: rgba(255,255,255,0.9); font-weight: 700; }
+.cmp-table td.num-s { color: #ff9070; font-family: 'Share Tech Mono', monospace; font-size: 13px; }
+.cmp-table td.num-l { color: var(--electric); font-family: 'Share Tech Mono', monospace; font-size: 13px; }
+.cmp-table td.num-dash { color: rgba(255,255,255,0.2); font-family: 'Share Tech Mono', monospace; }
+.cmp-table tbody tr:last-child td { border-bottom: none; }
+.count-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+.pill-s { background: rgba(255,69,0,0.15); color: #ff9070; }
+.pill-l { background: rgba(0,245,255,0.1); color: var(--electric); }
+
+/* === SYNC STATUS === */
+.sync-status {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  padding: 5px 12px;
+  border-radius: 6px;
+  transition: all 0.3s;
+  margin-left: 8px;
+}
+.sync-synced { background: rgba(74,222,128,0.1); color: #4ade80; border: 1px solid rgba(74,222,128,0.2); }
+.sync-saving  { background: rgba(255,215,0,0.1); color: var(--gold); border: 1px solid rgba(255,215,0,0.2); }
+.sync-loading { background: rgba(0,245,255,0.1); color: var(--electric); border: 1px solid rgba(0,245,255,0.2); }
+.sync-error   { background: rgba(255,69,0,0.1); color: #ff7c50; border: 1px solid rgba(255,69,0,0.2); }
+.sync-offline { background: rgba(100,116,139,0.15); color: #64748b; border: 1px solid rgba(100,116,139,0.2); }
+
+/* === SETUP BANNER === */
+.setup-banner {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: #0a1628;
+  border-top: 1px solid rgba(255,215,0,0.3);
+  padding: 20px 40px;
+  z-index: 999;
+  gap: 20px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.setup-banner-title {
+  font-family: 'Black Ops One', cursive;
+  font-size: 14px;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.setup-steps {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+  line-height: 2;
+  letter-spacing: 1px;
+}
+.setup-steps a { color: var(--electric); text-decoration: none; }
+.setup-steps a:hover { text-decoration: underline; }
+.setup-steps b { color: rgba(255,255,255,0.8); }
+.setup-close {
+  margin-left: auto;
+  background: none;
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.3);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  align-self: center;
+}
+.setup-close:hover { border-color: rgba(255,255,255,0.3); color: white; }
 .popup-overlay {
   display: none;
   position: fixed;
@@ -508,6 +690,12 @@ body::before {
     <div class="streak-bar">
       <div class="streak-badge" id="pct-badge">0% COMPLETE</div>
       <div class="motivational-text" id="motivational-msg">Start your journey — greatness awaits.</div>
+      <span class="sync-status sync-offline" id="sync-status">💾 LOCAL ONLY</span>
+    </div>
+    <div class="resources-bar">
+      <a class="res-btn res-btn-striver" href="https://takeuforward.org/interviews/strivers-sde-sheet-top-coding-interview-problems" target="_blank">⚔️ SHRADHA'S SHEET</a>
+      <a class="res-btn res-btn-love" href="https://www.geeksforgeeks.org/dsa/dsa-sheet-by-love-babbar" target="_blank">💻 LOVE BABBAR SHEET</a>
+      <a class="res-btn res-btn-sheet" href="https://docs.google.com/spreadsheets/d/1hXserPuxVoWMG9Hs7y8wVdRCJTcj3xMBAEYUOXQ5Xag/edit" target="_blank">📊 MASTER SPREADSHEET</a>
     </div>
   </div>
 
@@ -534,6 +722,19 @@ body::before {
     <div class="popup-msg" id="popup-msg">You just conquered another battlefield. Keep that energy.</div>
     <button class="popup-close" onclick="closePopup()">KEEP GRINDING</button>
   </div>
+</div>
+
+<!-- Setup Banner -->
+<div class="setup-banner" id="setup-banner">
+  <div>
+    <div class="setup-banner-title">⚡ ONE-TIME CLOUD SYNC SETUP — 2 MINUTES</div>
+    <div class="setup-steps">
+      <b>STEP 1:</b> Go to <a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens/new</a> → Note: "DSA Tracker" → Expiration: No expiration → Scope: ✅ <b>gist</b> → Click Generate → <b>Copy the token</b><br>
+      <b>STEP 2:</b> Go to <a href="https://gist.github.com" target="_blank">gist.github.com</a> → Description: "DSA Progress" → Filename: <b>elite-dsa-progress.json</b> → Content: <b>{}</b> → Click Create Secret Gist → <b>Copy the ID from the URL</b><br>
+      <b>STEP 3:</b> Open <b>index.html</b> → paste token into <b>GIST_TOKEN</b> and ID into <b>GIST_ID</b> → Save & push to GitHub → Done! ✅
+    </div>
+  </div>
+  <button class="setup-close" onclick="document.getElementById('setup-banner').style.display='none'">DISMISS</button>
 </div>
 
 <script>
@@ -564,13 +765,145 @@ const MOTIVATIONAL = [
   "🔥 YOU DID IT. ABSOLUTE ELITE. 🔥"
 ];
 
-let state = JSON.parse(localStorage.getItem('elite-dsa') || '{}');
+// ═══════════════════════════════════════════════════════════
+// 🔧 SETUP — Fill these in once (see instructions on screen)
+// ═══════════════════════════════════════════════════════════
+const GIST_TOKEN = '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';
+const GIST_ID    = 'baf66b09ab8d6447d7c414dff47a6296';
+// ═══════════════════════════════════════════════════════════
 
-function saveState() { localStorage.setItem('elite-dsa', JSON.stringify(state)); }
+const GIST_FILE  = 'elite-dsa-progress.json';
+let state = {};
+let syncTimeout = null;
+
+// --- Setup UI ---
+function showSetupBanner() {
+  const needToken = !GIST_TOKEN || !GIST_ID;
+  if (!needToken) return;
+  const banner = document.getElementById('setup-banner');
+  if (banner) banner.style.display = 'flex';
+}
+
+// --- Load from Gist, fallback to localStorage ---
+async function loadState() {
+  // Always load localStorage first so UI is instant
+  const local = localStorage.getItem('elite-dsa');
+  if (local) state = JSON.parse(local);
+
+  if (!GIST_TOKEN || !GIST_ID) {
+    setSyncStatus('offline', '💾 LOCAL ONLY — Setup Gist for cloud sync');
+    return;
+  }
+
+  setSyncStatus('loading', '☁️ LOADING FROM CLOUD...');
+  try {
+    const res = await fetch(`https://api.github.com/gists/${GIST_ID}`, {
+      headers: { Authorization: `token ${GIST_TOKEN}`, Accept: 'application/vnd.github.v3+json' }
+    });
+    if (!res.ok) throw new Error('Fetch failed');
+    const data = await res.json();
+    const content = data.files?.[GIST_FILE]?.content;
+    if (content) {
+      const cloud = JSON.parse(content);
+      // Merge: cloud wins (cloud is source of truth)
+      state = cloud;
+      localStorage.setItem('elite-dsa', JSON.stringify(state));
+    }
+    setSyncStatus('synced', '✅ SYNCED WITH CLOUD');
+  } catch (e) {
+    setSyncStatus('error', '⚠️ CLOUD LOAD FAILED — Using local data');
+    console.warn('Gist load error:', e);
+  }
+}
+
+// --- Save to localStorage instantly, debounce cloud save ---
+function saveState() {
+  localStorage.setItem('elite-dsa', JSON.stringify(state));
+  if (!GIST_TOKEN || !GIST_ID) return;
+
+  setSyncStatus('saving', '🔄 SAVING...');
+  clearTimeout(syncTimeout);
+  syncTimeout = setTimeout(pushToGist, 1200);
+}
+
+async function pushToGist() {
+  try {
+    const res = await fetch(`https://api.github.com/gists/${GIST_ID}`, {
+      method: 'PATCH',
+      headers: {
+        Authorization: `token ${GIST_TOKEN}`,
+        Accept: 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ files: { [GIST_FILE]: { content: JSON.stringify(state) } } })
+    });
+    if (!res.ok) throw new Error('Save failed');
+    setSyncStatus('synced', '✅ SYNCED — ' + new Date().toLocaleTimeString());
+  } catch (e) {
+    setSyncStatus('error', '⚠️ CLOUD SAVE FAILED — Progress saved locally');
+    console.warn('Gist push error:', e);
+  }
+}
+
+function setSyncStatus(type, msg) {
+  const el = document.getElementById('sync-status');
+  if (!el) return;
+  el.textContent = msg;
+  el.className = 'sync-status sync-' + type;
+}
+
+const COMPARE_DATA = [
+  { topic: 'Arrays',                  s: 26, l: 36 },
+  { topic: 'Strings',                 s: 22, l: 45 },
+  { topic: '2D Arrays / Matrix',      s: 10, l: 10 },
+  { topic: 'Searching & Sorting',     s: 23, l: 36 },
+  { topic: 'Backtracking',            s: 21, l: 20 },
+  { topic: 'Linked List',             s: 26, l: 36 },
+  { topic: 'Stacks & Queues',         s: 27, l: 38 },
+  { topic: 'Greedy',                  s: 22, l: 36 },
+  { topic: 'Binary Trees',            s: 33, l: 35 },
+  { topic: 'Binary Search Trees',     s: 21, l: 23 },
+  { topic: 'Heaps / Heap + Hashing',  s: 28, l: 19 },
+  { topic: 'Graphs',                  s: 40, l: 44 },
+  { topic: 'Tries',                   s: 6,  l: 6  },
+  { topic: 'Dynamic Programming',     s: 54, l: 65 },
+  { topic: 'Bit Manipulation',        s: 10, l: 10 },
+  { topic: 'Segment Trees',           s: 6,  l: null },
+];
 
 function buildPlan() {
   const container = document.getElementById('dsa-plan');
   container.innerHTML = '';
+
+  // — Comparison Table —
+  const tableWrap = document.createElement('div');
+  tableWrap.className = 'table-section';
+  const totalS = COMPARE_DATA.reduce((a,r)=>a+r.s,0);
+  const totalL = COMPARE_DATA.reduce((a,r)=>a+(r.l||0),0);
+  tableWrap.innerHTML = `
+    <div class="table-section-header">
+      <span class="ts-icon">📋</span>
+      <span class="ts-title">SHEET COMPARISON</span>
+      <span class="ts-sub">SHRADHA VS LOVE BABBAR</span>
+    </div>
+    <table class="cmp-table">
+      <thead>
+        <tr>
+          <th>TOPIC</th>
+          <th class="col-s">⚔️ SHRADHA (${totalS})</th>
+          <th class="col-l">💻 LOVE BABBAR (${totalL})</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${COMPARE_DATA.map(r => `
+          <tr>
+            <td>${r.topic}</td>
+            <td><span class="count-pill pill-s">${r.s}</span></td>
+            <td>${r.l !== null ? `<span class="count-pill pill-l">${r.l}</span>` : `<span class="num-dash">—</span>`}</td>
+          </tr>`).join('')}
+      </tbody>
+    </table>`;
+  container.appendChild(tableWrap);
   PLAN.forEach((topic, ti) => {
     const sec = document.createElement('div');
     sec.className = 'topic-section';
@@ -662,6 +995,15 @@ function showPage(id) {
   el.classList.add('active');
   if (id === 'dsa') buildPlan();
 }
+
+// === INIT ===
+(async () => {
+  showSetupBanner();
+  await loadState();
+  // If DSA page is already active (direct load), rebuild with loaded state
+  if (document.getElementById('dsa').classList.contains('active')) buildPlan();
+  else if (document.getElementById('dsa-plan').innerHTML !== '') buildPlan();
+})();
 </script>
 </body>
 </html>

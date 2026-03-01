@@ -395,31 +395,265 @@ body::before {
   width: 0%;
 }
 
-/* === AI PAGE === */
-#ai {
-  display: none;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
+/* === IMPROVED COMPARISON TABLE === */
+.table-section {
+  background: var(--section-bg);
+  border: 1px solid rgba(255,215,0,0.15);
+  border-radius: 20px;
+  margin-bottom: 40px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
-#ai.active { display: flex; }
 
-.coming-soon-wrap { padding: 40px; }
-.cs-icon { font-size: 80px; margin-bottom: 30px; display: block; }
-.cs-title {
+.table-section-header {
+  padding: 22px 28px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border-bottom: 2px solid rgba(255,215,0,0.2);
+  background: linear-gradient(135deg, rgba(255,69,0,0.1), rgba(0,245,255,0.05));
+}
+
+.table-section-header .ts-icon {
+  font-size: 28px;
+  filter: drop-shadow(0 0 8px rgba(255,215,0,0.3));
+}
+
+.table-section-header .ts-title {
   font-family: 'Black Ops One', cursive;
-  font-size: 52px;
-  background: linear-gradient(90deg, var(--electric), var(--gold));
+  font-size: 22px;
+  background: linear-gradient(135deg, var(--fire), var(--gold));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 16px;
+  letter-spacing: 2px;
 }
-.cs-sub {
-  font-size: 16px;
-  color: rgba(255,255,255,0.3);
-  letter-spacing: 3px;
+
+.table-section-header .ts-sub {
   font-family: 'Share Tech Mono', monospace;
+  font-size: 12px;
+  color: var(--electric);
+  margin-left: auto;
+  letter-spacing: 3px;
+  background: rgba(0,245,255,0.1);
+  padding: 6px 16px;
+  border-radius: 30px;
+  border: 1px solid rgba(0,245,255,0.2);
+}
+
+.cmp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.cmp-table thead tr {
+  background: rgba(0,0,0,0.3);
+}
+
+.cmp-table th {
+  padding: 18px 25px;
+  text-align: left;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 2px;
+  font-weight: 700;
+  border-bottom: 1px solid rgba(255,215,0,0.15);
+}
+
+.cmp-table th:first-child { 
+  color: rgba(255,255,255,0.9);
+  font-size: 14px;
+}
+
+.cmp-table th.col-s { 
+  color: #ff7c50;
+  text-shadow: 0 0 10px rgba(255,69,0,0.3);
+}
+
+.cmp-table th.col-l { 
+  color: var(--electric);
+  text-shadow: 0 0 10px rgba(0,245,255,0.3);
+}
+
+.cmp-table td {
+  padding: 15px 25px;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  font-weight: 500;
+  color: rgba(255,255,255,0.85);
+  transition: background 0.2s;
+}
+
+.cmp-table tr:hover td {
+  background: rgba(255,255,255,0.02);
+}
+
+.cmp-table td:first-child { 
+  color: var(--gold);
+  font-weight: 600;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 16px;
+}
+
+.cmp-table td.num-s { 
+  color: #ff7c50;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.cmp-table td.num-l { 
+  color: var(--electric);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.cmp-table td.num-dash { 
+  color: rgba(255,255,255,0.2);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 16px;
+}
+
+.count-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 45px;
+  padding: 4px 12px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.pill-s { 
+  background: linear-gradient(135deg, rgba(255,69,0,0.2), rgba(255,69,0,0.05));
+  color: #ff9070;
+  border: 1px solid rgba(255,69,0,0.3);
+}
+
+.pill-l { 
+  background: linear-gradient(135deg, rgba(0,245,255,0.15), rgba(0,245,255,0.02));
+  color: var(--electric);
+  border: 1px solid rgba(0,245,255,0.2);
+}
+
+/* === AI PAGE TABLE === */
+#ai {
+  display: none;
+  min-height: 100vh;
+  padding: 0;
+}
+#ai.active { display: block; }
+
+.ai-schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--section-bg);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255,215,0,0.15);
+  margin-top: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.ai-schedule-table th {
+  background: linear-gradient(135deg, rgba(255,69,0,0.2), rgba(0,245,255,0.1));
+  font-family: 'Black Ops One', cursive;
+  font-size: 16px;
+  letter-spacing: 2px;
+  padding: 20px 25px;
+  text-align: left;
+  border-bottom: 2px solid rgba(255,215,0,0.3);
+  color: var(--gold);
+}
+
+.ai-schedule-table th:first-child { border-radius: 20px 0 0 0; }
+.ai-schedule-table th:last-child { border-radius: 0 20px 0 0; }
+
+.ai-schedule-table td {
+  padding: 16px 25px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.ai-schedule-table tr:hover td {
+  background: rgba(255,255,255,0.03);
+}
+
+.ai-schedule-table tr:last-child td {
+  border-bottom: none;
+}
+
+.ai-date-cell {
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--electric);
+  font-weight: bold;
+  width: 140px;
+  font-size: 15px;
+}
+
+.ai-topic-cell {
+  color: rgba(255,255,255,0.9);
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.ai-checkbox-cell {
+  width: 70px;
+  text-align: center;
+}
+
+.ai-checkbox {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  border: 2px solid rgba(255,215,0,0.3);
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin: 0 auto;
+}
+
+.ai-checkbox.checked {
+  background: linear-gradient(135deg, var(--fire), var(--gold));
+  border-color: transparent;
+}
+
+.ai-checkbox.checked::after {
+  content: '✓';
+  font-size: 16px;
+  color: #000;
+  font-weight: bold;
+}
+
+.ai-row-completed {
+  opacity: 0.5;
+}
+
+.ai-row-completed .ai-topic-cell {
+  text-decoration: line-through;
+}
+
+/* ML Row Styling */
+.ml-range-row {
+  background: linear-gradient(90deg, rgba(255,69,0,0.1), rgba(0,245,255,0.05));
+  border-left: 3px solid var(--electric);
+}
+
+.ml-range-tag {
+  background: linear-gradient(135deg, var(--fire), var(--electric));
+  color: white;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-family: 'Share Tech Mono', monospace;
+  margin-left: 15px;
+  letter-spacing: 1px;
+  display: inline-block;
 }
 
 /* === ANIMATIONS === */
@@ -443,10 +677,10 @@ body::before {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 9px 18px;
-  border-radius: 8px;
+  padding: 10px 22px;
+  border-radius: 30px;
   font-family: 'Share Tech Mono', monospace;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 2px;
   font-weight: bold;
   text-decoration: none;
@@ -456,121 +690,54 @@ body::before {
   white-space: nowrap;
 }
 .res-btn-striver {
-  background: rgba(255,69,0,0.12);
+  background: rgba(255,69,0,0.15);
   border-color: rgba(255,69,0,0.5);
   color: #ff7c50;
 }
 .res-btn-striver:hover {
-  background: rgba(255,69,0,0.25);
+  background: rgba(255,69,0,0.3);
   border-color: var(--fire);
-  box-shadow: 0 0 18px rgba(255,69,0,0.3);
+  box-shadow: 0 0 20px rgba(255,69,0,0.4);
+  transform: translateY(-2px);
 }
 .res-btn-love {
-  background: rgba(0,245,255,0.08);
+  background: rgba(0,245,255,0.1);
   border-color: rgba(0,245,255,0.4);
   color: var(--electric);
 }
 .res-btn-love:hover {
-  background: rgba(0,245,255,0.18);
+  background: rgba(0,245,255,0.2);
   border-color: var(--electric);
-  box-shadow: 0 0 18px rgba(0,245,255,0.25);
+  box-shadow: 0 0 20px rgba(0,245,255,0.3);
+  transform: translateY(-2px);
 }
 .res-btn-sheet {
-  background: rgba(255,215,0,0.08);
+  background: rgba(255,215,0,0.1);
   border-color: rgba(255,215,0,0.35);
   color: var(--gold);
 }
 .res-btn-sheet:hover {
-  background: rgba(255,215,0,0.18);
+  background: rgba(255,215,0,0.2);
   border-color: var(--gold);
-  box-shadow: 0 0 18px rgba(255,215,0,0.25);
+  box-shadow: 0 0 20px rgba(255,215,0,0.3);
+  transform: translateY(-2px);
 }
-
-/* === COMPARISON TABLE === */
-.table-section {
-  background: var(--section-bg);
-  border: 1px solid rgba(255,215,0,0.1);
-  border-radius: 16px;
-  margin-bottom: 32px;
-  overflow: hidden;
-}
-.table-section-header {
-  padding: 18px 24px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-.table-section-header .ts-icon { font-size: 20px; }
-.table-section-header .ts-title {
-  font-family: 'Black Ops One', cursive;
-  font-size: 16px;
-  color: var(--gold);
-  letter-spacing: 1px;
-}
-.table-section-header .ts-sub {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 11px;
-  color: rgba(255,255,255,0.3);
-  margin-left: auto;
-  letter-spacing: 2px;
-}
-.cmp-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 14px;
-}
-.cmp-table th {
-  padding: 12px 20px;
-  text-align: left;
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 3px;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-.cmp-table th:first-child { color: rgba(255,255,255,0.4); }
-.cmp-table th.col-s { color: #ff7c50; }
-.cmp-table th.col-l { color: var(--electric); }
-.cmp-table tr:hover td { background: rgba(255,255,255,0.025); }
-.cmp-table td {
-  padding: 11px 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
-  font-weight: 600;
-  color: rgba(255,255,255,0.75);
-  transition: background 0.2s;
-}
-.cmp-table td:first-child { color: rgba(255,255,255,0.9); font-weight: 700; }
-.cmp-table td.num-s { color: #ff9070; font-family: 'Share Tech Mono', monospace; font-size: 13px; }
-.cmp-table td.num-l { color: var(--electric); font-family: 'Share Tech Mono', monospace; font-size: 13px; }
-.cmp-table td.num-dash { color: rgba(255,255,255,0.2); font-family: 'Share Tech Mono', monospace; }
-.cmp-table tbody tr:last-child td { border-bottom: none; }
-.count-pill {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 40px;
-  padding: 3px 10px;
-  border-radius: 20px;
-  font-size: 12px;
-}
-.pill-s { background: rgba(255,69,0,0.15); color: #ff9070; }
-.pill-l { background: rgba(0,245,255,0.1); color: var(--electric); }
 
 /* === SYNC STATUS === */
 .sync-status {
   font-family: 'Share Tech Mono', monospace;
   font-size: 11px;
   letter-spacing: 2px;
-  padding: 5px 12px;
-  border-radius: 6px;
+  padding: 6px 14px;
+  border-radius: 30px;
   transition: all 0.3s;
   margin-left: 8px;
 }
-.sync-synced { background: rgba(74,222,128,0.1); color: #4ade80; border: 1px solid rgba(74,222,128,0.2); }
-.sync-saving  { background: rgba(255,215,0,0.1); color: var(--gold); border: 1px solid rgba(255,215,0,0.2); }
-.sync-loading { background: rgba(0,245,255,0.1); color: var(--electric); border: 1px solid rgba(0,245,255,0.2); }
-.sync-error   { background: rgba(255,69,0,0.1); color: #ff7c50; border: 1px solid rgba(255,69,0,0.2); }
-.sync-offline { background: rgba(100,116,139,0.15); color: #64748b; border: 1px solid rgba(100,116,139,0.2); }
+.sync-synced { background: rgba(74,222,128,0.15); color: #4ade80; border: 1px solid rgba(74,222,128,0.3); }
+.sync-saving  { background: rgba(255,215,0,0.15); color: var(--gold); border: 1px solid rgba(255,215,0,0.3); }
+.sync-loading { background: rgba(0,245,255,0.15); color: var(--electric); border: 1px solid rgba(0,245,255,0.3); }
+.sync-error   { background: rgba(255,69,0,0.15); color: #ff7c50; border: 1px solid rgba(255,69,0,0.3); }
+.sync-offline { background: rgba(100,116,139,0.15); color: #64748b; border: 1px solid rgba(100,116,139,0.3); }
 
 /* === SETUP BANNER === */
 .setup-banner {
@@ -608,8 +775,8 @@ body::before {
   color: rgba(255,255,255,0.3);
   font-family: 'Share Tech Mono', monospace;
   font-size: 11px;
-  padding: 6px 14px;
-  border-radius: 6px;
+  padding: 8px 18px;
+  border-radius: 30px;
   cursor: pointer;
   white-space: nowrap;
   align-self: center;
@@ -628,23 +795,23 @@ body::before {
 .popup-box {
   background: var(--card-bg);
   border: 1px solid var(--gold);
-  border-radius: 24px;
+  border-radius: 30px;
   padding: 60px;
   text-align: center;
   animation: fadeUp 0.4s ease;
-  max-width: 400px;
+  max-width: 450px;
 }
-.popup-emoji { font-size: 64px; margin-bottom: 20px; display: block; }
-.popup-title { font-family: 'Black Ops One', cursive; font-size: 32px; color: var(--gold); margin-bottom: 12px; }
-.popup-msg { font-size: 16px; color: rgba(255,255,255,0.5); line-height: 1.6; margin-bottom: 30px; }
+.popup-emoji { font-size: 70px; margin-bottom: 20px; display: block; }
+.popup-title { font-family: 'Black Ops One', cursive; font-size: 36px; color: var(--gold); margin-bottom: 15px; }
+.popup-msg { font-size: 18px; color: rgba(255,255,255,0.5); line-height: 1.6; margin-bottom: 30px; }
 .popup-close {
   background: linear-gradient(135deg, var(--fire), var(--gold));
   border: none;
   color: #000;
   font-family: 'Black Ops One', cursive;
-  font-size: 16px;
-  padding: 14px 36px;
-  border-radius: 10px;
+  font-size: 18px;
+  padding: 16px 40px;
+  border-radius: 40px;
   cursor: pointer;
   letter-spacing: 1px;
 }
@@ -693,7 +860,7 @@ body::before {
       <span class="sync-status sync-offline" id="sync-status">💾 LOCAL ONLY</span>
     </div>
     <div class="resources-bar">
-      <a class="res-btn res-btn-striver" href="https://takeuforward.org/interviews/strivers-sde-sheet-top-coding-interview-problems" target="_blank">⚔️ SHRADHA'S SHEET</a>
+      <a class="res-btn res-btn-striver" href="https://takeuforward.org/interviews/strivers-sde-sheet-top-coding-interview-problems" target="_blank">⚔️ STRIVER'S SHEET</a>
       <a class="res-btn res-btn-love" href="https://www.geeksforgeeks.org/dsa/dsa-sheet-by-love-babbar" target="_blank">💻 LOVE BABBAR SHEET</a>
       <a class="res-btn res-btn-sheet" href="https://docs.google.com/spreadsheets/d/1hXserPuxVoWMG9Hs7y8wVdRCJTcj3xMBAEYUOXQ5Xag/edit" target="_blank">📊 MASTER SPREADSHEET</a>
     </div>
@@ -704,13 +871,36 @@ body::before {
 
 <!-- AI PAGE -->
 <div id="ai" class="page">
-  <div class="page-hero" data-bg-text="AI" style="width:100%">
+  <div class="page-hero" data-bg-text="AI">
     <div class="back-btn" onclick="showPage('home')">← BACK TO BASE</div>
+    <div class="page-title"><span>AI & ML</span> ROADMAP</div>
+    <div class="page-subtitle">// MACHINE LEARNING · DEEP LEARNING · DOMINATION</div>
+    <div class="overall-progress">
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="ai-overall-bar"></div>
+      </div>
+      <div class="progress-label" id="ai-overall-label">0 / 33 DONE</div>
+    </div>
+    <div class="streak-bar">
+      <div class="streak-badge" id="ai-pct-badge">0% COMPLETE</div>
+      <div class="motivational-text" id="ai-motivational-msg">Start your AI journey — greatness awaits.</div>
+      <span class="sync-status sync-offline" id="ai-sync-status">💾 LOCAL ONLY</span>
+    </div>
   </div>
-  <div class="coming-soon-wrap">
-    <span class="cs-icon">🚀</span>
-    <div class="cs-title">COMING SOON</div>
-    <div class="cs-sub">BUILD BEYOND LIMITS</div>
+
+  <div class="plan-body">
+    <table class="ai-schedule-table" id="ai-schedule">
+      <thead>
+        <tr>
+          <th>DATE</th>
+          <th>TOPIC</th>
+          <th>✓</th>
+        </tr>
+      </thead>
+      <tbody id="ai-table-body">
+        <!-- Filled by JavaScript -->
+      </tbody>
+    </table>
   </div>
 </div>
 
@@ -754,8 +944,47 @@ const PLAN = [
   { id: 'heap', icon: '🏔️', name: 'HEAP', items: ['HEAP','HEAP','HEAP'], color: '#f87171' },
 ];
 
-const MOTIVATIONAL = [
-  "Start your journey — greatness awaits.",
+const AI_PLAN = [
+  // March 2-13: Linear Algebra, Calculus, Probability
+  { date: '2 - 3', topic: 'REVISION' },
+  { date: '3 - 3', topic: 'LAM2' },
+  { date: '4 - 3', topic: 'LAM3' },
+  { date: '5 - 3', topic: 'COMPLETE LA' },
+  { date: '6 - 3', topic: 'CAL BASICS' },
+  { date: '7 - 3', topic: 'CAM1' },
+  { date: '8 - 3', topic: 'CAM2' },
+  { date: '9 - 3', topic: 'CAM3' },
+  { date: '10 - 3', topic: 'CAL REV' },
+  { date: '11 - 3', topic: 'PROW1' },
+  { date: '12 - 3', topic: 'PROW2' },
+  { date: '13 - 3', topic: 'COMPLETE PRO' },
+  
+  // March 14-25: ML (12 days - each day separate)
+  { date: '14 - 3', topic: 'ML-1' },
+  { date: '15 - 3', topic: 'ML-2' },
+  { date: '16 - 3', topic: 'ML-3' },
+  { date: '17 - 3', topic: 'ML-4' },
+  { date: '18 - 3', topic: 'ML-5' },
+  { date: '19 - 3', topic: 'ML-6' },
+  { date: '20 - 3', topic: 'ML-7' },
+  { date: '21 - 3', topic: 'ML-8' },
+  { date: '22 - 3', topic: 'ML-9' },
+  { date: '23 - 3', topic: 'ML-10' },
+  { date: '24 - 3', topic: 'ML-11' },
+  { date: '25 - 3', topic: 'ML-12' },
+  
+  // March 26-April 1: DL (each day separate)
+  { date: '26 - 3', topic: 'DL-1' },
+  { date: '27 - 3', topic: 'DL-2' },
+  { date: '28 - 3', topic: 'DL-3' },
+  { date: '29 - 3', topic: 'DL-4' },
+  { date: '30 - 3', topic: 'DL-5' },
+  { date: '31 - 3', topic: 'DL-6' },
+  { date: '1 - 4', topic: 'DL-7' }
+];
+
+const AI_MOTIVATIONAL = [
+  "Start your AI journey — greatness awaits.",
   "You've started. That's more than most.",
   "The grind is working. Stay relentless.",
   "Halfway there — don't slow down now!",
@@ -774,6 +1003,7 @@ const GIST_ID    = 'baf66b09ab8d6447d7c414dff47a6296';
 
 const GIST_FILE  = 'elite-dsa-progress.json';
 let state = {};
+let aiState = {};
 let syncTimeout = null;
 
 // --- Setup UI ---
@@ -789,6 +1019,9 @@ async function loadState() {
   // Always load localStorage first so UI is instant
   const local = localStorage.getItem('elite-dsa');
   if (local) state = JSON.parse(local);
+  
+  const aiLocal = localStorage.getItem('elite-ai');
+  if (aiLocal) aiState = JSON.parse(aiLocal);
 
   if (!GIST_TOKEN || !GIST_ID) {
     setSyncStatus('offline', '💾 LOCAL ONLY — Setup Gist for cloud sync');
@@ -806,8 +1039,10 @@ async function loadState() {
     if (content) {
       const cloud = JSON.parse(content);
       // Merge: cloud wins (cloud is source of truth)
-      state = cloud;
+      state = cloud.dsa || {};
+      aiState = cloud.ai || {};
       localStorage.setItem('elite-dsa', JSON.stringify(state));
+      localStorage.setItem('elite-ai', JSON.stringify(aiState));
     }
     setSyncStatus('synced', '✅ SYNCED WITH CLOUD');
   } catch (e) {
@@ -819,6 +1054,7 @@ async function loadState() {
 // --- Save to localStorage instantly, debounce cloud save ---
 function saveState() {
   localStorage.setItem('elite-dsa', JSON.stringify(state));
+  localStorage.setItem('elite-ai', JSON.stringify(aiState));
   if (!GIST_TOKEN || !GIST_ID) return;
 
   setSyncStatus('saving', '🔄 SAVING...');
@@ -835,7 +1071,16 @@ async function pushToGist() {
         Accept: 'application/vnd.github.v3+json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ files: { [GIST_FILE]: { content: JSON.stringify(state) } } })
+      body: JSON.stringify({ 
+        files: { 
+          [GIST_FILE]: { 
+            content: JSON.stringify({ 
+              dsa: state, 
+              ai: aiState 
+            }) 
+          } 
+        } 
+      })
     });
     if (!res.ok) throw new Error('Save failed');
     setSyncStatus('synced', '✅ SYNCED — ' + new Date().toLocaleTimeString());
@@ -847,9 +1092,15 @@ async function pushToGist() {
 
 function setSyncStatus(type, msg) {
   const el = document.getElementById('sync-status');
-  if (!el) return;
-  el.textContent = msg;
-  el.className = 'sync-status sync-' + type;
+  const aiEl = document.getElementById('ai-sync-status');
+  if (el) {
+    el.textContent = msg;
+    el.className = 'sync-status sync-' + type;
+  }
+  if (aiEl) {
+    aiEl.textContent = msg;
+    aiEl.className = 'sync-status sync-' + type;
+  }
 }
 
 const COMPARE_DATA = [
@@ -873,6 +1124,8 @@ const COMPARE_DATA = [
 
 function buildPlan() {
   const container = document.getElementById('dsa-plan');
+  if (!container) return;
+  
   container.innerHTML = '';
 
   // — Comparison Table —
@@ -884,13 +1137,13 @@ function buildPlan() {
     <div class="table-section-header">
       <span class="ts-icon">📋</span>
       <span class="ts-title">SHEET COMPARISON</span>
-      <span class="ts-sub">SHRADHA VS LOVE BABBAR</span>
+      <span class="ts-sub">STRIVER VS LOVE BABBAR</span>
     </div>
     <table class="cmp-table">
       <thead>
         <tr>
           <th>TOPIC</th>
-          <th class="col-s">⚔️ SHRADHA (${totalS})</th>
+          <th class="col-s">⚔️ STRIVER (${totalS})</th>
           <th class="col-l">💻 LOVE BABBAR (${totalL})</th>
         </tr>
       </thead>
@@ -904,7 +1157,8 @@ function buildPlan() {
       </tbody>
     </table>`;
   container.appendChild(tableWrap);
-  PLAN.forEach((topic, ti) => {
+  
+  PLAN.forEach((topic) => {
     const sec = document.createElement('div');
     sec.className = 'topic-section';
     sec.id = 'sec-' + topic.id;
@@ -940,9 +1194,35 @@ function buildPlan() {
   updateOverall();
 }
 
+function buildAIPlan() {
+  const tbody = document.getElementById('ai-table-body');
+  if (!tbody) return;
+  
+  let html = '';
+  
+  AI_PLAN.forEach((item, index) => {
+    const key = 'ai_' + index;
+    const checked = !!aiState[key];
+    const rowClass = checked ? 'ai-row-completed' : '';
+    
+    html += `
+      <tr class="${rowClass}" onclick="toggleAITask(${index})" style="cursor: pointer;">
+        <td class="ai-date-cell">${item.date}</td>
+        <td class="ai-topic-cell">${item.topic}</td>
+        <td class="ai-checkbox-cell">
+          <div class="ai-checkbox${checked ? ' checked' : ''}" id="ai-cb-${index}"></div>
+        </td>
+      </tr>
+    `;
+  });
+  
+  tbody.innerHTML = html;
+  updateAIOverall();
+}
+
 function toggleSection(id) {
   const sec = document.getElementById('sec-' + id);
-  sec.classList.toggle('open');
+  if (sec) sec.classList.toggle('open');
 }
 
 function toggleTask(topicId, idx, total) {
@@ -952,20 +1232,57 @@ function toggleTask(topicId, idx, total) {
 
   const taskEl = document.getElementById('task-' + key);
   const cbEl = document.getElementById('cb-' + key);
-  if (state[key]) { taskEl.classList.add('done'); cbEl.classList.add('checked'); }
-  else { taskEl.classList.remove('done'); cbEl.classList.remove('checked'); }
+  if (state[key]) { 
+    if (taskEl) taskEl.classList.add('done'); 
+    if (cbEl) cbEl.classList.add('checked'); 
+  } else { 
+    if (taskEl) taskEl.classList.remove('done'); 
+    if (cbEl) cbEl.classList.remove('checked'); 
+  }
 
   // update topic mini bar
   const topic = PLAN.find(t => t.id === topicId);
-  const done = topic.items.filter((_, i) => state[topicId + '_' + i]).length;
-  document.getElementById('pbar-' + topicId).style.width = (done/total*100) + '%';
-  document.getElementById('mini-' + topicId).textContent = done + '/' + total + ' COMPLETE';
+  if (topic) {
+    const done = topic.items.filter((_, i) => state[topicId + '_' + i]).length;
+    const pbar = document.getElementById('pbar-' + topicId);
+    const mini = document.getElementById('mini-' + topicId);
+    if (pbar) pbar.style.width = (done/total*100) + '%';
+    if (mini) mini.textContent = done + '/' + total + ' COMPLETE';
 
-  if (done === total && state[key]) {
-    showPopup(topic.name);
+    if (done === total && state[key]) {
+      showPopup(topic.name);
+    }
   }
 
   updateOverall();
+}
+
+function toggleAITask(idx) {
+  const key = 'ai_' + idx;
+  aiState[key] = !aiState[key];
+  saveState();
+
+  // Update the row styling
+  const row = document.querySelector(`#ai-table-body tr:nth-child(${idx + 1})`);
+  const cb = document.getElementById('ai-cb-' + idx);
+  
+  if (row) {
+    if (aiState[key]) {
+      row.classList.add('ai-row-completed');
+      if (cb) cb.classList.add('checked');
+    } else {
+      row.classList.remove('ai-row-completed');
+      if (cb) cb.classList.remove('checked');
+    }
+  }
+
+  // Check if all tasks are done
+  const allDone = AI_PLAN.every((_, i) => aiState['ai_' + i]);
+  if (allDone) {
+    showPopup('AI/ML Roadmap');
+  }
+
+  updateAIOverall();
 }
 
 function updateOverall() {
@@ -975,34 +1292,86 @@ function updateOverall() {
     done += t.items.filter((_, i) => state[t.id + '_' + i]).length;
   });
   const pct = total ? Math.round(done / total * 100) : 0;
-  document.getElementById('overall-bar').style.width = pct + '%';
-  document.getElementById('overall-label').textContent = done + ' / ' + total + ' DONE';
-  document.getElementById('pct-badge').textContent = pct + '% COMPLETE';
+  
+  const overallBar = document.getElementById('overall-bar');
+  const overallLabel = document.getElementById('overall-label');
+  const pctBadge = document.getElementById('pct-badge');
+  const motivationalMsg = document.getElementById('motivational-msg');
+  
+  if (overallBar) overallBar.style.width = pct + '%';
+  if (overallLabel) overallLabel.textContent = done + ' / ' + total + ' DONE';
+  if (pctBadge) pctBadge.textContent = pct + '% COMPLETE';
 
-  const msgIdx = Math.min(Math.floor(pct / 14), MOTIVATIONAL.length - 1);
-  document.getElementById('motivational-msg').textContent = MOTIVATIONAL[msgIdx];
+  const msgIdx = Math.min(Math.floor(pct / 14), 7);
+  if (motivationalMsg) motivationalMsg.textContent = MOTIVATIONAL[msgIdx];
 }
+
+function updateAIOverall() {
+  const total = AI_PLAN.length;
+  const done = AI_PLAN.filter((_, i) => aiState['ai_' + i]).length;
+  const pct = total ? Math.round(done / total * 100) : 0;
+  
+  const aiOverallBar = document.getElementById('ai-overall-bar');
+  const aiOverallLabel = document.getElementById('ai-overall-label');
+  const aiPctBadge = document.getElementById('ai-pct-badge');
+  const aiMotivationalMsg = document.getElementById('ai-motivational-msg');
+  
+  if (aiOverallBar) aiOverallBar.style.width = pct + '%';
+  if (aiOverallLabel) aiOverallLabel.textContent = done + ' / ' + total + ' DONE';
+  if (aiPctBadge) aiPctBadge.textContent = pct + '% COMPLETE';
+
+  const msgIdx = Math.min(Math.floor(pct / 14), AI_MOTIVATIONAL.length - 1);
+  if (aiMotivationalMsg) aiMotivationalMsg.textContent = AI_MOTIVATIONAL[msgIdx];
+}
+
+const MOTIVATIONAL = [
+  "Start your journey — greatness awaits.",
+  "You've started. That's more than most.",
+  "The grind is working. Stay relentless.",
+  "Halfway there — don't slow down now!",
+  "You're built different. Prove it.",
+  "Almost there — legends don't quit!",
+  "90%! The finish line is RIGHT THERE!",
+  "🔥 YOU DID IT. ABSOLUTE ELITE. 🔥"
+];
 
 function showPopup(name) {
-  document.getElementById('popup-msg').textContent = `You just crushed ${name}! That's elite behavior. Keep the momentum alive.`;
-  document.getElementById('popup').classList.add('show');
+  const popupMsg = document.getElementById('popup-msg');
+  const popup = document.getElementById('popup');
+  if (popupMsg) popupMsg.textContent = `You just crushed ${name}! That's elite behavior. Keep the momentum alive.`;
+  if (popup) popup.classList.add('show');
 }
-function closePopup() { document.getElementById('popup').classList.remove('show'); }
+
+function closePopup() { 
+  const popup = document.getElementById('popup');
+  if (popup) popup.classList.remove('show'); 
+}
 
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   const el = document.getElementById(id);
-  el.classList.add('active');
-  if (id === 'dsa') buildPlan();
+  if (el) el.classList.add('active');
+  
+  if (id === 'dsa') {
+    buildPlan();
+  }
+  if (id === 'ai') {
+    buildAIPlan();
+  }
 }
 
 // === INIT ===
 (async () => {
   showSetupBanner();
   await loadState();
-  // If DSA page is already active (direct load), rebuild with loaded state
-  if (document.getElementById('dsa').classList.contains('active')) buildPlan();
-  else if (document.getElementById('dsa-plan').innerHTML !== '') buildPlan();
+  
+  // Check which page is active and build accordingly
+  if (document.getElementById('dsa')?.classList.contains('active')) {
+    buildPlan();
+  }
+  if (document.getElementById('ai')?.classList.contains('active')) {
+    buildAIPlan();
+  }
 })();
 </script>
 </body>

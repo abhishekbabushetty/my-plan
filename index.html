@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elite Mastery Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Rajdhani:wght@400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root {
+  --fire: #ff4500;
+  --gold: #ffd700;
+  --electric: #00f5ff;
+  --dark: #050a0f;
+  --card-bg: #0a1628;
+  --section-bg: #0d1f35;
+  --text: #e2e8f0;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--dark);
+  color: var(--text);
+  font-family: 'Rajdhani', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* === ANIMATED BG === */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 80% 60% at 20% 20%, rgba(255,69,0,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 80% 80%, rgba(0,245,255,0.05) 0%, transparent 60%),
+    repeating-linear-gradient(0deg, transparent, transparent 80px, rgba(255,215,0,0.015) 80px, rgba(255,215,0,0.015) 81px),
+    repeating-linear-gradient(90deg, transparent, transparent 80px, rgba(255,215,0,0.015) 80px, rgba(255,215,0,0.015) 81px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page { display: none; position: relative; z-index: 1; }
+.page.active { display: block; }
+
+/* ===== HOME ===== */
+#home {
+  display: none;
+  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+}
+#home.active { display: flex; }
+
+.home-eyebrow {
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--electric);
+  font-size: 13px;
+  letter-spacing: 6px;
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards 0.2s;
+}
+
+.home-title {
+  font-family: 'Black Ops One', cursive;
+  font-size: clamp(42px, 8vw, 90px);
+  line-height: 1;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeUp 0.7s ease forwards 0.4s;
+}
+.home-title .fire-line {
+  display: block;
+  background: linear-gradient(90deg, var(--fire), var(--gold), var(--fire));
+  background-size: 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite 1.1s;
+}
+.home-title .white-line { display: block; color: white; }
+
+.home-tagline {
+  font-size: 18px;
+  color: #64748b;
+  letter-spacing: 2px;
+  margin-bottom: 60px;
+  opacity: 0;
+  animation: fadeUp 0.7s ease forwards 0.6s;
+}
+
+.home-cards {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.8s;
+}
+
+.home-card {
+  position: relative;
+  background: var(--card-bg);
+  border: 1px solid rgba(255,215,0,0.15);
+  border-radius: 20px;
+  padding: 50px 60px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  min-width: 220px;
+}
+.home-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,69,0,0.08), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.home-card:hover::before { opacity: 1; }
+.home-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  border-color: var(--gold);
+  box-shadow: 0 20px 60px rgba(255,69,0,0.3), 0 0 0 1px rgba(255,215,0,0.2);
+}
+.home-card .card-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  display: block;
+}
+.home-card .card-label {
+  font-family: 'Black Ops One', cursive;
+  font-size: 22px;
+  letter-spacing: 2px;
+  color: white;
+}
+.home-card .card-sub {
+  font-size: 12px;
+  color: var(--electric);
+  letter-spacing: 3px;
+  margin-top: 6px;
+}
+
+.home-quote {
+  margin-top: 70px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 13px;
+  color: rgba(255,215,0,0.4);
+  letter-spacing: 2px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 1.2s;
+}
+
+/* ===== INNER PAGES ===== */
+#dsa, #ai {
+  min-height: 100vh;
+  padding: 0;
+}
+
+.page-hero {
+  position: relative;
+  padding: 60px 60px 50px;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255,215,0,0.1);
+}
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,69,0,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+.page-hero::after {
+  content: attr(data-bg-text);
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Black Ops One', cursive;
+  font-size: 160px;
+  color: rgba(255,255,255,0.02);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.back-btn {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: var(--electric);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 30px;
+  padding: 8px 16px;
+  border: 1px solid rgba(0,245,255,0.2);
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+.back-btn:hover {
+  background: rgba(0,245,255,0.08);
+  border-color: var(--electric);
+}
+
+.page-title {
+  font-family: 'Black Ops One', cursive;
+  font-size: clamp(36px, 6vw, 72px);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.page-title span {
+  background: linear-gradient(90deg, var(--fire), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.page-subtitle {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 4px;
+  margin-top: 12px;
+}
+
+/* Progress bar */
+.overall-progress {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.progress-bar-wrap {
+  flex: 1;
+  max-width: 400px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 100px;
+  height: 8px;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--fire), var(--gold));
+  border-radius: 100px;
+  transition: width 0.5s ease;
+  width: 0%;
+}
+.progress-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 13px;
+  color: var(--gold);
+  white-space: nowrap;
+}
+
+/* Motivational streak */
+.streak-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 16px;
+}
+.streak-badge {
+  background: linear-gradient(135deg, rgba(255,69,0,0.2), rgba(255,215,0,0.1));
+  border: 1px solid rgba(255,215,0,0.3);
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--gold);
+}
+.motivational-text {
+  font-size: 13px;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 1px;
+  font-style: italic;
+}
+
+/* ===== PLAN CONTENT ===== */
+.plan-body {
+  padding: 40px 60px 80px;
+}
+
+.topic-section {
+  background: var(--section-bg);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 16px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+.topic-section:hover { border-color: rgba(255,215,0,0.15); }
+
+.topic-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  cursor: pointer;
+  user-select: none;
+}
+.topic-header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.topic-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.topic-name {
+  font-family: 'Black Ops One', cursive;
+  font-size: 17px;
+  letter-spacing: 1px;
+  color: var(--gold);
+}
+.topic-mini-progress {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  color: rgba(255,255,255,0.3);
+}
+.topic-arrow {
+  font-size: 12px;
+  color: rgba(255,255,255,0.2);
+  transition: transform 0.3s;
+}
+.topic-section.open .topic-arrow { transform: rotate(180deg); }
+
+.topic-items {
+  display: none;
+  padding: 0 24px 20px;
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
+.topic-section.open .topic-items { display: block; }
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  margin-top: 8px;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+.task-item:hover { background: rgba(255,255,255,0.04); }
+.task-item.done { opacity: 0.4; }
+.task-item.done .task-label { text-decoration: line-through; }
+
+.task-cb {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  border: 2px solid rgba(255,215,0,0.3);
+  background: transparent;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.task-cb.checked {
+  background: linear-gradient(135deg, var(--fire), var(--gold));
+  border-color: transparent;
+}
+.task-cb.checked::after { content: '✓'; font-size: 12px; color: #000; font-weight: bold; }
+
+.task-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.8);
+  flex: 1;
+}
+
+/* Topic mini progress bar */
+.topic-pbar {
+  height: 3px;
+  background: rgba(255,255,255,0.05);
+  overflow: hidden;
+}
+.topic-pbar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--fire), var(--gold));
+  transition: width 0.4s;
+  width: 0%;
+}
+
+/* === AI PAGE === */
+#ai {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+#ai.active { display: flex; }
+
+.coming-soon-wrap { padding: 40px; }
+.cs-icon { font-size: 80px; margin-bottom: 30px; display: block; }
+.cs-title {
+  font-family: 'Black Ops One', cursive;
+  font-size: 52px;
+  background: linear-gradient(90deg, var(--electric), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 16px;
+}
+.cs-sub {
+  font-size: 16px;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 3px;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+/* === ANIMATIONS === */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes shimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* === COMPLETION POPUP === */
+.popup-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+.popup-overlay.show { display: flex; }
+.popup-box {
+  background: var(--card-bg);
+  border: 1px solid var(--gold);
+  border-radius: 24px;
+  padding: 60px;
+  text-align: center;
+  animation: fadeUp 0.4s ease;
+  max-width: 400px;
+}
+.popup-emoji { font-size: 64px; margin-bottom: 20px; display: block; }
+.popup-title { font-family: 'Black Ops One', cursive; font-size: 32px; color: var(--gold); margin-bottom: 12px; }
+.popup-msg { font-size: 16px; color: rgba(255,255,255,0.5); line-height: 1.6; margin-bottom: 30px; }
+.popup-close {
+  background: linear-gradient(135deg, var(--fire), var(--gold));
+  border: none;
+  color: #000;
+  font-family: 'Black Ops One', cursive;
+  font-size: 16px;
+  padding: 14px 36px;
+  border-radius: 10px;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+</style>
+</head>
+<body>
+
+<!-- HOME -->
+<div id="home" class="page active">
+  <div class="home-eyebrow">// SYSTEM INITIALIZED — WARRIOR MODE ON</div>
+  <div class="home-title">
+    <span class="fire-line">BUILD YOUR</span>
+    <span class="white-line">ELITE VERSION</span>
+  </div>
+  <p class="home-tagline">EVERY REP. EVERY PROBLEM. EVERY DAY.</p>
+  <div class="home-cards">
+    <div class="home-card" onclick="showPage('dsa')">
+      <span class="card-icon">⚔️</span>
+      <div class="card-label">DSA PLAN</div>
+      <div class="card-sub">MASTER THE GRIND</div>
+    </div>
+    <div class="home-card" onclick="showPage('ai')">
+      <span class="card-icon">🧠</span>
+      <div class="card-label">AI & DEV</div>
+      <div class="card-sub">BUILD BEYOND LIMITS</div>
+    </div>
+  </div>
+  <div class="home-quote">"DISCIPLINE IS DOING IT WHEN YOU DON'T FEEL LIKE IT."</div>
+</div>
+
+<!-- DSA PAGE -->
+<div id="dsa" class="page">
+  <div class="page-hero" data-bg-text="DSA">
+    <div class="back-btn" onclick="showPage('home')">← BACK TO BASE</div>
+    <div class="page-title"><span>DSA ELITE</span> ROADMAP</div>
+    <div class="page-subtitle">// STRUCTURES · ALGORITHMS · DOMINATION</div>
+    <div class="overall-progress">
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="overall-bar"></div>
+      </div>
+      <div class="progress-label" id="overall-label">0 / 0 DONE</div>
+    </div>
+    <div class="streak-bar">
+      <div class="streak-badge" id="pct-badge">0% COMPLETE</div>
+      <div class="motivational-text" id="motivational-msg">Start your journey — greatness awaits.</div>
+    </div>
+  </div>
+
+  <div class="plan-body" id="dsa-plan"></div>
+</div>
+
+<!-- AI PAGE -->
+<div id="ai" class="page">
+  <div class="page-hero" data-bg-text="AI" style="width:100%">
+    <div class="back-btn" onclick="showPage('home')">← BACK TO BASE</div>
+  </div>
+  <div class="coming-soon-wrap">
+    <span class="cs-icon">🚀</span>
+    <div class="cs-title">COMING SOON</div>
+    <div class="cs-sub">BUILD BEYOND LIMITS</div>
+  </div>
+</div>
+
+<!-- Completion popup -->
+<div class="popup-overlay" id="popup">
+  <div class="popup-box">
+    <span class="popup-emoji">🔥</span>
+    <div class="popup-title">SECTION CRUSHED!</div>
+    <div class="popup-msg" id="popup-msg">You just conquered another battlefield. Keep that energy.</div>
+    <button class="popup-close" onclick="closePopup()">KEEP GRINDING</button>
+  </div>
+</div>
+
+<script>
+const PLAN = [
+  { id: 'arrays', icon: '📊', name: 'ARRAYS', items: ['ARRAYS1','ARRAYS2','ARRAYS3','ARRAYS4'], color: '#ff6b35' },
+  { id: 'strings', icon: '🔤', name: 'STRINGS', items: ['STRINGS1','STRINGS2','STRINGS3','STRINGS4'], color: '#ffd700' },
+  { id: 'searchsort', icon: '🔍', name: 'SEARCHING & SORTING', items: ['SEARCHING & SORTING1','SEARCHING & SORTING2','SEARCHING & SORTING3','SEARCHING & SORTING4'], color: '#00f5ff' },
+  { id: 'backtrack', icon: '🔁', name: 'BACK TRACKING', items: ['BACK TRACKING1','BACK TRACKING2','BACK TRACKING3','BACK TRACKING4'], color: '#a855f7' },
+  { id: 'linkedlist', icon: '🔗', name: 'LINKED LIST', items: ['LINKED LIST1','LINKED LIST2','LINKED LIST3','LINKED LIST4'], color: '#22d3ee' },
+  { id: 'stacksq', icon: '📚', name: 'STACKS AND QUEUES', items: ['STACKS AND QUEUES1','STACKS AND QUEUES2','STACKS AND QUEUES3','STACKS AND QUEUES4'], color: '#f472b6' },
+  { id: 'greedy', icon: '💡', name: 'GREEDY', items: ['GREEDY1','GREEDY2','GREEDY3','GREEDY4'], color: '#84cc16' },
+  { id: 'bm', icon: '🧮', name: 'BM', items: ['BM1','BM2','BM3','BM4'], color: '#fb923c' },
+  { id: 'trees', icon: '🌲', name: 'TREES', items: ['TREES1','TREES2','TREES3','TREES4'], color: '#4ade80' },
+  { id: 'bt', icon: '🌀', name: 'BT', items: ['BT','BT','BT','BT'], color: '#38bdf8' },
+  { id: 'graphs', icon: '🕸️', name: 'GRAPHS', items: ['GRAPHS1','GRAPHS2','GRAPHS3','GRAPHS4'], color: '#f59e0b' },
+  { id: 'dp', icon: '⚡', name: 'DP', items: ['DP1','DP2','DP3','DP4'], color: '#e879f9' },
+  { id: 'heap', icon: '🏔️', name: 'HEAP', items: ['HEAP','HEAP','HEAP'], color: '#f87171' },
+];
+
+const MOTIVATIONAL = [
+  "Start your journey — greatness awaits.",
+  "You've started. That's more than most.",
+  "The grind is working. Stay relentless.",
+  "Halfway there — don't slow down now!",
+  "You're built different. Prove it.",
+  "Almost there — legends don't quit!",
+  "90%! The finish line is RIGHT THERE!",
+  "🔥 YOU DID IT. ABSOLUTE ELITE. 🔥"
+];
+
+let state = JSON.parse(localStorage.getItem('elite-dsa') || '{}');
+
+function saveState() { localStorage.setItem('elite-dsa', JSON.stringify(state)); }
+
+function buildPlan() {
+  const container = document.getElementById('dsa-plan');
+  container.innerHTML = '';
+  PLAN.forEach((topic, ti) => {
+    const sec = document.createElement('div');
+    sec.className = 'topic-section';
+    sec.id = 'sec-' + topic.id;
+
+    const total = topic.items.length;
+    const done = topic.items.filter((_, i) => state[topic.id + '_' + i]).length;
+
+    sec.innerHTML = `
+      <div class="topic-pbar"><div class="topic-pbar-fill" id="pbar-${topic.id}" style="width:${done/total*100}%"></div></div>
+      <div class="topic-header" onclick="toggleSection('${topic.id}')">
+        <div class="topic-header-left">
+          <div class="topic-icon" style="background:${topic.color}22; color:${topic.color}">${topic.icon}</div>
+          <div>
+            <div class="topic-name">${topic.name}</div>
+            <div class="topic-mini-progress" id="mini-${topic.id}">${done}/${total} COMPLETE</div>
+          </div>
+        </div>
+        <div class="topic-arrow">▼</div>
+      </div>
+      <div class="topic-items" id="items-${topic.id}">
+        ${topic.items.map((item, i) => {
+          const key = topic.id + '_' + i;
+          const checked = !!state[key];
+          return `
+            <div class="task-item${checked ? ' done' : ''}" id="task-${key}" onclick="toggleTask('${topic.id}', ${i}, ${total})">
+              <div class="task-cb${checked ? ' checked' : ''}" id="cb-${key}"></div>
+              <div class="task-label">${item}</div>
+            </div>`;
+        }).join('')}
+      </div>`;
+    container.appendChild(sec);
+  });
+  updateOverall();
+}
+
+function toggleSection(id) {
+  const sec = document.getElementById('sec-' + id);
+  sec.classList.toggle('open');
+}
+
+function toggleTask(topicId, idx, total) {
+  const key = topicId + '_' + idx;
+  state[key] = !state[key];
+  saveState();
+
+  const taskEl = document.getElementById('task-' + key);
+  const cbEl = document.getElementById('cb-' + key);
+  if (state[key]) { taskEl.classList.add('done'); cbEl.classList.add('checked'); }
+  else { taskEl.classList.remove('done'); cbEl.classList.remove('checked'); }
+
+  // update topic mini bar
+  const topic = PLAN.find(t => t.id === topicId);
+  const done = topic.items.filter((_, i) => state[topicId + '_' + i]).length;
+  document.getElementById('pbar-' + topicId).style.width = (done/total*100) + '%';
+  document.getElementById('mini-' + topicId).textContent = done + '/' + total + ' COMPLETE';
+
+  if (done === total && state[key]) {
+    showPopup(topic.name);
+  }
+
+  updateOverall();
+}
+
+function updateOverall() {
+  let total = 0, done = 0;
+  PLAN.forEach(t => {
+    total += t.items.length;
+    done += t.items.filter((_, i) => state[t.id + '_' + i]).length;
+  });
+  const pct = total ? Math.round(done / total * 100) : 0;
+  document.getElementById('overall-bar').style.width = pct + '%';
+  document.getElementById('overall-label').textContent = done + ' / ' + total + ' DONE';
+  document.getElementById('pct-badge').textContent = pct + '% COMPLETE';
+
+  const msgIdx = Math.min(Math.floor(pct / 14), MOTIVATIONAL.length - 1);
+  document.getElementById('motivational-msg').textContent = MOTIVATIONAL[msgIdx];
+}
+
+function showPopup(name) {
+  document.getElementById('popup-msg').textContent = `You just crushed ${name}! That's elite behavior. Keep the momentum alive.`;
+  document.getElementById('popup').classList.add('show');
+}
+function closePopup() { document.getElementById('popup').classList.remove('show'); }
+
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const el = document.getElementById(id);
+  el.classList.add('active');
+  if (id === 'dsa') buildPlan();
+}
+</script>
+</body>
+</html>

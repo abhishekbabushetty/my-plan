@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>30-Day Backend Master Roadmap | Architect Level</title>
+    <meta name="description" content="A comprehensive, high-octane 30-day roadmap to mastering backend engineering, distributed systems, and cloud architecture.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Color Palette - Deep Indigo & Cyber Neon */
+            --bg-main: #0a0a0f;
+            --bg-card: rgba(20, 20, 31, 0.7);
+            --bg-card-hover: rgba(30, 30, 46, 0.8);
+            --accent-primary: #6366f1; /* Indigo */
+            --accent-secondary: #0ea5e9; /* Sky */
+            --accent-glow: rgba(99, 102, 241, 0.4);
+            
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-tertiary: #64748b;
+            
+            --border-glow: rgba(99, 102, 241, 0.2);
+            --border-dim: rgba(255, 255, 255, 0.08);
+            
+            --p1: #a855f7; --p1-glow: rgba(168, 85, 247, 0.2);
+            --p2: #06b6d4; --p2-glow: rgba(6, 182, 212, 0.2);
+            --p3: #f59e0b; --p3-glow: rgba(245, 158, 11, 0.2);
+            --p4: #ef4444; --p4-glow: rgba(239, 68, 68, 0.2);
+            --p5: #10b981; --p5-glow: rgba(16, 185, 129, 0.2);
+            
+            --diff-brutal: #ff4d4d;
+            --diff-hard: #fbbf24;
+            --diff-medium: #34d399;
+            
+            --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-mono: 'JetBrains+Mono', monospace;
+            
+            --radius-xl: 24px;
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+            
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 100% 100%, rgba(14, 165, 233, 0.15) 0%, transparent 40%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 5rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid var(--accent-primary);
+            color: var(--accent-primary);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Roadmap Grid */
+        .phase-group {
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease-out both;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .phase-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem 2rem;
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-dim);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: var(--transition);
+            user-select: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .phase-header:hover {
+            border-color: var(--border-glow);
+            background: var(--bg-card-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .phase-badge {
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 0.4rem 1rem;
+            border-radius: 100px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .phase-title {
+            flex: 1;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .phase-days {
+            font-size: 0.9rem;
+            color: var(--text-tertiary);
+            font-weight: 500;
+        }
+
+        .chevron {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            color: var(--text-tertiary);
+        }
+
+        .chevron.open {
+            transform: rotate(90deg);
+            color: var(--accent-primary);
+        }
+
+        /* Days Grid (Accordion Content) */
+        .days-container {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            padding-left: 2rem;
+            margin-left: 2rem;
+            border-left: 2px solid var(--border-dim);
+            margin-top: -1px;
+        }
+
+        .days-container.open {
+            max-height: 5000px; /* Large enough to fit content */
+            margin-top: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .day-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-dim);
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            transition: var(--transition);
+            overflow: hidden;
+        }
+
+        .day-card:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .day-header {
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            cursor: pointer;
+        }
+
+        .day-num {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--accent-primary);
+            font-weight: 600;
+            min-width: 60px;
+        }
+
+        .day-title {
+            flex: 1;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .day-diff {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.2rem 0.6rem;
+            border-radius: 100px;
+            text-transform: uppercase;
+        }
+
+        .day-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            padding: 0 1.5rem;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .day-body.open {
+            max-height: 1500px;
+            padding-bottom: 1.5rem;
+            border-top: 1px solid var(--border-dim);
+            padding-top: 1.5rem;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .topic-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .topic-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .topic-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.6rem;
+            width: 6px;
+            height: 6px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-primary);
+        }
+
+        .challenge-box {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: var(--radius-sm);
+            padding: 1.5rem;
+            border-left: 4px solid var(--accent-primary);
+            margin-bottom: 2rem;
+        }
+
+        .challenge-box p {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            font-style: italic;
+        }
+
+        .resource-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .res-chip {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-dim);
+            border-radius: var(--radius-sm);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .res-chip:hover {
+            background: var(--accent-primary);
+            color: white;
+            border-color: var(--accent-primary);
+            transform: translateY(-2px);
+        }
+
+        /* Specific Phase Colors */
+        .p1-badge { background: var(--p1-glow); color: var(--p1); border: 1px solid var(--p1); }
+        .p2-badge { background: var(--p2-glow); color: var(--p2); border: 1px solid var(--p2); }
+        .p3-badge { background: var(--p3-glow); color: var(--p3); border: 1px solid var(--p3); }
+        .p4-badge { background: var(--p4-glow); color: var(--p4); border: 1px solid var(--p4); }
+        .p5-badge { background: var(--p5-glow); color: var(--p5); border: 1px solid var(--p5); }
+
+        .diff-brutal { color: var(--diff-brutal); border: 1px solid var(--diff-brutal); background: rgba(255, 77, 77, 0.1); }
+        .diff-hard { color: var(--diff-hard); border: 1px solid var(--diff-hard); background: rgba(251, 191, 36, 0.1); }
+        .diff-medium { color: var(--diff-medium); border: 1px solid var(--diff-medium); background: rgba(52, 211, 153, 0.1); }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-main); }
+        ::-webkit-scrollbar-thumb { background: var(--border-dim); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-tertiary); }
+
+        @media (max-width: 768px) {
+            .container { padding: 2rem 1rem; }
+            .phase-header { padding: 1.2rem; gap: 1rem; }
+            .phase-title { font-size: 1.1rem; }
+            .days-container { margin-left: 0.5rem; padding-left: 1rem; }
+            .day-header { padding: 1rem; gap: 1rem; }
+            .day-num { min-width: 45px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="hero">
+            <span class="hero-badge">30 Days • Architect Track</span>
+            <h1>The Backend Master Roadmap</h1>
+            <p>From OSI layers to Distributed Systems. A high-octane engineering path for the elite 1%.</p>
+        </header>
+
+        <div id="roadmap"></div>
+    </div>
+
+<script>
+const phases = [
+  {
+    id: 1, label: "Phase 1", name: "Networking, Protocols & API Design", days: "Days 1–5", badge: "p1-badge", border: "p1-border",
+    days_data: [
+      {
+        n: 1, title: "Raw Networking & HTTP from Scratch", diff: "brutal",
+        topics: [
+          "OSI model deep dive — understand where TCP/IP sits vs HTTP",
+          "Write a raw TCP server using Python's socket module — no frameworks",
+          "Implement HTTP/1.1 request parser: method, path, headers, body",
+          "Handle keep-alive connections, chunked transfer encoding, pipelining",
+          "Understand TCP flow control, Nagle's algorithm, TCP_NODELAY",
+          "Implement a basic connection pool with a fixed worker-thread pool",
+          "HTTP/2 concepts: multiplexing, header compression (HPACK), stream priorities",
+          "Understand TLS handshake, cipher suites, certificate chain validation",
+          "Study how Nginx handles 10K+ connections (event-driven I/O model)"
+        ],
+        challenge: "Build an HTTP/1.1 server from raw sockets that serves static files, handles concurrent requests with a thread pool, supports keep-alive, and returns proper status codes. Benchmark with wrk or hey — target 5K req/s on your machine.",
+        diff_label: "brutal",
+        resources: [
+          { label: "Beej's Networking Guide", url: "https://beej.us/guide/bgnet/" },
+          { label: "HTTP/1.1 RFC 7230", url: "https://datatracker.ietf.org/doc/html/rfc7230" },
+          { label: "HTTP/2 RFC 7540", url: "https://datatracker.ietf.org/doc/html/rfc7540" }
+        ]
+      },
+      {
+        n: 2, title: "REST, GraphQL & gRPC Mastery", diff: "hard",
+        topics: [
+          "Richardson Maturity Model: Level 0→3, HATEOAS in practice",
+          "RESTful URL design, proper use of HTTP verbs including PATCH vs PUT",
+          "API versioning strategies: URL, header, content negotiation",
+          "Build a GraphQL server with schema-first design, resolvers, context",
+          "Implement the DataLoader pattern to solve the N+1 query problem",
+          "GraphQL subscriptions over WebSocket for real-time updates",
+          "gRPC: protobuf schema design, all 4 RPC types (unary, server/client/bidirectional streaming)",
+          "Build an API gateway that routes between REST, GraphQL, gRPC backends",
+          "Compare latency and throughput of all three — know when to use each",
+          "Implement request/response validation, API rate limiting with token bucket algorithm"
+        ],
+        challenge: "Build a product catalog backend exposing the same data via REST (HATEOAS), GraphQL (with DataLoader), and gRPC. Add an API gateway that routes based on Accept header or path prefix. Load test each — document the latency differences.",
+        diff_label: "hard",
+        resources: [
+          { label: "GraphQL Docs", url: "https://graphql.org/learn/" },
+          { label: "gRPC Concepts", url: "https://grpc.io/docs/what-is-grpc/core-concepts/" },
+          { label: "REST Cookbook", url: "https://restcookbook.com/" }
+        ]
+      },
+      {
+        n: 3, title: "Async I/O & Concurrency Deep Dive", diff: "brutal",
+        topics: [
+          "How event loops work: select/poll/epoll/kqueue system calls",
+          "Build a minimal event loop in Python using selectors module",
+          "Understand asyncio internals: event loop, coroutines, tasks, futures",
+          "Difference between concurrency (asyncio) and parallelism (multiprocessing)",
+          "Thread vs process vs coroutine — memory, overhead, GIL implications",
+          "WebSocket protocol: upgrade handshake, frame format, ping/pong",
+          "Build a WebSocket server from scratch on top of your HTTP server",
+          "Backpressure: what happens when producers outrun consumers",
+          "POSIX async I/O (aio_read, aio_write) vs io_uring on Linux",
+          "Actor model concepts and why Erlang/Elixir scale differently"
+        ],
+        challenge: "Build a real-time multiplayer drawing board: WebSocket server handles 10K+ concurrent connections (use asyncio), rooms with pub/sub routing, reconnection with session restore, and heartbeat detection to evict dead clients. Measure memory per connection.",
+        diff_label: "brutal",
+        resources: [
+          { label: "Python asyncio Internals", url: "https://snarky.ca/how-the-heck-does-async-await-work-in-python-3-5/" },
+          { label: "libuv Architecture", url: "https://docs.libuv.org/en/v1.x/design.html" },
+          { label: "io_uring Guide", url: "https://unixism.net/loti/" }
+        ]
+      },
+      {
+        n: 4, title: "Database Internals from Scratch", diff: "brutal",
+        topics: [
+          "B-Tree structure: node splitting, merging, balancing algorithm",
+          "Implement a B-Tree key-value store with insert, delete, range scan",
+          "Buffer pool manager: LRU eviction, dirty page tracking, page pinning",
+          "Write-Ahead Log (WAL): why it's necessary, redo/undo records, checkpointing",
+          "MVCC (Multi-Version Concurrency Control): snapshot isolation, read views",
+          "ACID properties: how each is implemented at the engine level",
+          "Index types: B-Tree vs Hash vs Bitmap vs GiST — when each wins",
+          "Query execution: parse → analyze → optimize → execute pipeline",
+          "Join algorithms: nested loop, hash join, sort-merge join — complexity analysis",
+          "Vacuum/compaction: why Postgres needs it, how RocksDB does compaction"
+        ],
+        challenge: "Build a mini key-value database that persists to disk using your B-Tree, has a WAL for crash recovery, supports basic transactions (BEGIN/COMMIT/ROLLBACK), and can recover correctly after a simulated crash mid-write.",
+        diff_label: "brutal",
+        resources: [
+          { label: "CMU Database Internals Course", url: "https://15445.courses.cs.cmu.edu/" },
+          { label: "Database Internals Book (free preview)", url: "https://www.databass.dev/" },
+          { label: "Let's Build a Simple Database", url: "https://cstack.github.io/db_tutorial/" }
+        ]
+      },
+      {
+        n: 5, title: "NoSQL, Polyglot Persistence & Distributed Transactions", diff: "hard",
+        topics: [
+          "MongoDB: document model, aggregation pipeline, explain plans, index strategies",
+          "Redis: all data structures (String, Hash, List, Set, ZSet, Stream, HyperLogLog)",
+          "Redis as message broker: Streams with consumer groups vs Pub/Sub",
+          "Neo4j: Cypher query language, graph algorithms (shortest path, centrality)",
+          "TimescaleDB: continuous aggregates, retention policies, hypertable internals",
+          "Elasticsearch: inverted index, analyzers, relevance scoring (BM25), aggregations",
+          "Two-Phase Commit (2PC): coordinator, participant, failure modes",
+          "Saga pattern: choreography vs orchestration, compensating transactions",
+          "CQRS basics: separate read/write models, eventual consistency tradeoffs",
+          "CAP theorem applied: classify each DB you used (CP vs AP vs CA)"
+        ],
+        challenge: "Build an e-commerce order service using 4 databases: Postgres (orders), Redis (inventory locks + cart), MongoDB (product catalog), Elasticsearch (search). Implement a Saga for order placement that compensates on payment failure. Handle partial failures gracefully.",
+        diff_label: "hard",
+        resources: [
+          { label: "Redis University", url: "https://university.redis.com/" },
+          { label: "MongoDB University", url: "https://learn.mongodb.com/" },
+          { label: "Saga Pattern", url: "https://microservices.io/patterns/data/saga.html" }
+        ]
+      }
+    ]
+  },
+  {
+    id: 2, label: "Phase 2", name: "Security, Auth & FastAPI", days: "Days 6–8", badge: "p2-badge", border: "p2-border",
+    days_data: [
+      {
+        n: 6, title: "Security & Cryptography from First Principles", diff: "brutal",
+        topics: [
+          "Symmetric encryption: AES-256-GCM — understand nonce, auth tag, why GCM over CBC",
+          "Asymmetric encryption: RSA key generation, PKCS#1 vs OAEP padding",
+          "Hashing: SHA-256/512, HMAC — understand length extension attacks",
+          "Password hashing: why bcrypt/argon2 vs SHA — understand work factor",
+          "Implement JWT from scratch: header.payload.signature, RS256 vs HS256",
+          "JWT vulnerabilities: algorithm confusion (none), key confusion attacks",
+          "OAuth 2.0 flows: Authorization Code + PKCE, Client Credentials, Device flow",
+          "Build a full OAuth 2.0 authorization server (not just client)",
+          "TOTP (RFC 6238): implement 2FA with QR code generation",
+          "WebAuthn/FIDO2: attestation, assertion, resident keys, authenticator data",
+          "OWASP Top 10: implement defense for each (SQLi, XSS, CSRF, IDOR, etc.)",
+          "Security headers: CSP, HSTS, X-Frame-Options, SameSite cookies"
+        ],
+        challenge: "Build a complete auth service: user registration with argon2 hashing, JWT access + refresh token rotation, TOTP 2FA, OAuth 2.0 client (Google/GitHub), rate limiting on login endpoint, account lockout after N failures, and a security audit checklist that passes OWASP.",
+        diff_label: "brutal",
+        resources: [
+          { label: "OWASP Top 10", url: "https://owasp.org/www-project-top-ten/" },
+          { label: "WebAuthn Guide", url: "https://webauthn.guide/" },
+          { label: "JWT Security Best Practices", url: "https://curity.io/resources/learn/jwt-best-practices/" }
+        ]
+      },
+      {
+        n: 7, title: "FastAPI Production Mastery", diff: "hard",
+        topics: [
+          "Dependency injection graph: chained dependencies, scopes (request vs global)",
+          "Background tasks vs Celery vs asyncio tasks — when each is appropriate",
+          "Custom exception handlers, error response schemas, problem+json format",
+          "Middleware stack: request ID injection, timing, compression, CORS",
+          "Pydantic v2 deep dive: validators, model_validator, computed fields, discriminated unions",
+          "OpenAPI customization: tags, security schemes, response examples",
+          "Testing: pytest fixtures, test database with transactions that rollback, mock external services",
+          "Integration testing with httpx.AsyncClient",
+          "Load testing with Locust: write realistic user scenarios, identify bottlenecks",
+          "Profiling: py-spy, cProfile, identify hot paths in async code",
+          "Prometheus metrics: Counter, Gauge, Histogram, Summary — instrument business metrics",
+          "Circuit breaker pattern with tenacity: retry with exponential backoff"
+        ],
+        challenge: "Build an API gateway in FastAPI: routes to 3 backend services, circuit breaker per service, request validation, JWT auth middleware, Prometheus metrics endpoint, rate limiting per user, structured JSON logging, and a /health endpoint with dependency checks. All test-covered.",
+        diff_label: "hard",
+        resources: [
+          { label: "FastAPI Docs", url: "https://fastapi.tiangolo.com/" },
+          { label: "Pydantic v2 Docs", url: "https://docs.pydantic.dev/latest/" },
+          { label: "Locust Docs", url: "https://locust.io/" }
+        ]
+      },
+      {
+        n: 8, title: "Redis Deep Dive & Advanced Caching", diff: "hard",
+        topics: [
+          "Redis persistence: RDB snapshots vs AOF — fsync policies and tradeoffs",
+          "Redis replication: leader-follower, replication lag, WAIT command",
+          "Redis Cluster: hash slot sharding, cluster bus, handling resharding",
+          "Redis Sentinel: quorum, leader election, split-brain prevention",
+          "Cache-aside vs read-through vs write-through vs write-behind patterns",
+          "Cache invalidation: TTL, event-driven invalidation, write-through consistency",
+          "Thundering herd problem: mutex locks, probabilistic early expiration",
+          "Multi-level cache: L1 (in-process dict) + L2 (Redis) with coherency protocol",
+          "Cache warming strategies: pre-population on startup, lazy vs eager",
+          "Lua scripting in Redis for atomic operations",
+          "Bloom filters in Redis: false positive rate, sizing formula",
+          "Rate limiting with Redis: fixed window, sliding window, token bucket, leaky bucket"
+        ],
+        challenge: "Build a caching layer library that: supports L1/L2 cache with L1 invalidation on write, implements sliding window rate limiter using Redis sorted sets, prevents thundering herd with distributed mutex, exposes hit/miss metrics, and has a cache-aside decorator usable on any async function.",
+        diff_label: "hard",
+        resources: [
+          { label: "Redis Documentation", url: "https://redis.io/docs/" },
+          { label: "Redis University RU101", url: "https://university.redis.com/courses/ru101/" },
+          { label: "Cache Stampede Paper", url: "https://cseweb.ucsd.edu/~avattani/papers/cache_stampede.pdf" }
+        ]
+      }
+    ]
+  },
+  {
+    id: 3, label: "Phase 3", name: "Messaging, Event-Driven & System Design", days: "Days 9–13", badge: "p3-badge", border: "p3-border",
+    days_data: [
+      {
+        n: 9, title: "Kafka & Event-Driven Architecture", diff: "hard",
+        topics: [
+          "Kafka architecture: broker, topic, partition, offset, consumer group",
+          "Producer internals: batching, linger.ms, acks (0/1/all), idempotent producer",
+          "Consumer internals: poll loop, offset commit strategies, rebalancing protocols (eager vs cooperative)",
+          "Exactly-once semantics (EOS): transactions, transactional ID, epoch",
+          "Compacted topics: how they work, use cases for state stores",
+          "Kafka Streams: KTable vs KStream, windowed aggregations, stateful transformations",
+          "Event sourcing: event store, append-only log, rebuilding state from events",
+          "CQRS pattern: command model vs query model, projection rebuilding",
+          "Outbox pattern: solving dual-write problem with DB + message broker",
+          "Dead letter queue: poison message handling, retry with backoff",
+          "Schema Registry + Avro: schema evolution, forward/backward compatibility"
+        ],
+        challenge: "Build an order fulfillment system using event sourcing: OrderPlaced, PaymentProcessed, InventoryReserved, OrderShipped events stored in Kafka. Build a projection service reading events to maintain an eventually-consistent order status read model in Redis. Implement the outbox pattern for dual-write safety.",
+        diff_label: "hard",
+        resources: [
+          { label: "Kafka Documentation", url: "https://kafka.apache.org/documentation/" },
+          { label: "Event Sourcing by Martin Fowler", url: "https://martinfowler.com/eaaDev/EventSourcing.html" },
+          { label: "Designing Event-Driven Systems (free PDF)", url: "https://www.confluent.io/designing-event-driven-systems/" }
+        ]
+      },
+      {
+        n: 10, title: "System Design: Foundational Patterns", diff: "hard",
+        topics: [
+          "Consistent hashing: virtual nodes, load distribution, adding/removing nodes",
+          "Gossip protocol: how Cassandra and DynamoDB spread state",
+          "Leader election: Bully algorithm, Raft leader election phase",
+          "Distributed consensus: Paxos intuition, Raft algorithm (log replication, election, safety)",
+          "CAP theorem: partition tolerance is not optional — choose C or A",
+          "PACELC: extends CAP to include latency tradeoffs even without partition",
+          "Vector clocks: causality tracking, last-write-wins vs merge conflicts",
+          "Bloom filters: false positive math, sizing, use in LSM trees",
+          "Rate limiting at scale: token bucket in Redis, distributed rate limiting with leaky bucket",
+          "Idempotency keys: design for safe retries in payment/mutation APIs",
+          "Design Twitter: timeline fanout (push vs pull vs hybrid), storage estimates",
+          "Design YouTube: video upload pipeline, transcoding, CDN strategy, view count at scale"
+        ],
+        challenge: "On paper + diagram: design a URL shortener handling 100K writes/day and 1B reads/day. Cover: storage estimation, sharding strategy, cache strategy, redirect latency target, analytics pipeline, expiry. Then implement it — working service with Postgres + Redis + basic analytics.",
+        diff_label: "hard",
+        resources: [
+          { label: "Raft Consensus Explained", url: "https://raft.github.io/" },
+          { label: "Consistent Hashing Paper", url: "https://dl.acm.org/doi/10.1145/258533.258660" },
+          { label: "System Design Primer", url: "https://github.com/donnemartin/system-design-primer" }
+        ]
+      },
+      {
+        n: 11, title: "System Design: Distributed Systems in Practice", diff: "hard",
+        topics: [
+          "Design Uber: geospatial indexing (S2, H3), driver location updates at scale, matching algorithm",
+          "Design a notification system: fan-out-on-write, push vs poll, multi-channel (email/SMS/push)",
+          "Design a distributed job scheduler: cron-like, exactly-once execution, failure recovery",
+          "Design a distributed lock service (like Redlock or ZooKeeper locks)",
+          "Design a leaderboard: real-time ranking with Redis sorted sets, global vs regional",
+          "Two-phase locking (2PL) vs optimistic concurrency control (OCC) — database perspective",
+          "Saga orchestration vs choreography: failure isolation, visibility, debugging complexity",
+          "Read replica lag: stale reads, monotonic read consistency, read-your-writes guarantees",
+          "Global vs local secondary indexes in DynamoDB — access pattern design",
+          "Hot partition problem: write amplification, shard splitting strategies"
+        ],
+        challenge: "Design and implement a distributed job scheduler: jobs stored in Postgres, workers poll with advisory locks (no double-execution), heartbeat to detect dead workers and reassign jobs, exponential backoff on failure, dead letter after N retries, metrics dashboard showing queue depth and failure rate.",
+        diff_label: "hard",
+        resources: [
+          { label: "Designing Data-Intensive Applications (DDIA)", url: "https://dataintensive.net/" },
+          { label: "AWS Architecture Center", url: "https://aws.amazon.com/architecture/" },
+          { label: "High Scalability Blog", url: "http://highscalability.com/" }
+        ]
+      },
+      {
+        n: 12, title: "Advanced SQL & Query Optimization", diff: "medium",
+        topics: [
+          "EXPLAIN ANALYZE: understanding seq scan vs index scan vs bitmap scan vs index-only scan",
+          "Index types: B-Tree, GiST, GIN, BRIN — when each wins",
+          "Partial indexes, expression indexes, covering indexes (INCLUDE)",
+          "Query planner: statistics, autovacuum's role, manual ANALYZE",
+          "Window functions: ROW_NUMBER, RANK, DENSE_RANK, LEAD/LAG, FIRST_VALUE",
+          "CTEs (Common Table Expressions): recursive CTEs for tree/graph traversal",
+          "Materialized views: refresh strategies, concurrent refresh",
+          "Table partitioning: range, list, hash — partition pruning in queries",
+          "Connection pooling: PgBouncer transaction vs session mode, pgpool-II",
+          "Deadlock detection: how Postgres handles it, how to prevent deadlocks in code",
+          "JSONB operations: operators, indexes, when to use vs separate columns",
+          "Full-text search in Postgres: tsvector, tsquery, GIN index, ranking"
+        ],
+        challenge: "Take a slow query from a realistic schema (users, orders, products, reviews — 1M+ rows each). Use EXPLAIN ANALYZE to diagnose. Optimize using indexes, query rewrite, and/or materialized views. Achieve at least 10x speedup. Document your reasoning at each step.",
+        diff_label: "medium",
+        resources: [
+          { label: "Use The Index, Luke", url: "https://use-the-index-luke.com/" },
+          { label: "Postgres EXPLAIN Docs", url: "https://www.postgresql.org/docs/current/using-explain.html" },
+          { label: "pgBadger Log Analyzer", url: "https://pgbadger.darold.net/" }
+        ]
+      },
+      {
+        n: 13, title: "Message Queues Beyond Kafka: RabbitMQ, SQS, Celery", diff: "medium",
+        topics: [
+          "RabbitMQ: exchanges (direct, topic, fanout, headers), bindings, dead letter exchange",
+          "RabbitMQ vs Kafka: when to use each — message vs event semantics",
+          "AMQP protocol: channels, acknowledgements, prefetch count, publisher confirms",
+          "Celery: task routing, canvas primitives (chain, group, chord), soft/hard time limits",
+          "Celery beat: periodic tasks, timezone handling, task result expiry",
+          "SQS: standard vs FIFO, visibility timeout, long polling, message deduplication",
+          "SNS fan-out pattern: SNS topic → multiple SQS queues",
+          "Task idempotency: why tasks must be idempotent, how to implement it",
+          "Priority queues: implementing task priority in RabbitMQ and Celery",
+          "Monitoring queues: queue depth alerts, consumer lag, poison message detection"
+        ],
+        challenge: "Build an image processing pipeline: user uploads image → SQS/RabbitMQ → Celery workers (resize, watermark, generate thumbnails in parallel using chord) → results stored in S3-compatible storage. Handle failures with DLQ, retry with backoff, alert on queue depth spike.",
+        diff_label: "medium",
+        resources: [
+          { label: "RabbitMQ Tutorials", url: "https://www.rabbitmq.com/tutorials" },
+          { label: "Celery Documentation", url: "https://docs.celeryq.dev/" },
+          { label: "AWS SQS Best Practices", url: "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-best-practices.html" }
+        ]
+      }
+    ]
+  },
+  {
+    id: 4, label: "Phase 4", name: "Containers, Kubernetes & Infrastructure", days: "Days 14–19", badge: "p4-badge", border: "p4-border",
+    days_data: [
+      {
+        n: 14, title: "Docker & Containerization Deep Dive", diff: "medium",
+        topics: [
+          "Container internals: Linux namespaces (PID, network, mount, UTS, IPC) and cgroups",
+          "Image layers: copy-on-write, UnionFS, layer caching strategy in builds",
+          "Multi-stage builds: compile in builder, copy artifacts to minimal runtime image",
+          "Distroless and scratch images: security benefits, debugging challenges",
+          "Docker networking: bridge, host, overlay, macvlan — when each is appropriate",
+          "Docker security: non-root user, read-only filesystem, seccomp profiles, capabilities",
+          "BuildKit: parallel build stages, cache mounts, secret mounts",
+          "Docker Compose: depends_on with health checks, profiles, override files",
+          "Image vulnerability scanning with Trivy or Grype",
+          "OCI spec: understanding what a container runtime (runc, containerd) actually does",
+          "BuildKit remote cache: share build cache across CI runners"
+        ],
+        challenge: "Containerize a FastAPI + Postgres + Redis + Celery app: multi-stage build achieving image <100MB, non-root user, health checks on all services, Compose with proper dependency ordering. Configure BuildKit with layer cache optimization so rebuild after a code change takes <10s. Scan for vulnerabilities — zero critical CVEs.",
+        diff_label: "medium",
+        resources: [
+          { label: "Docker Deep Dive Book (free chapters)", url: "https://nigelpoulton.com/books/" },
+          { label: "BuildKit Docs", url: "https://docs.docker.com/build/buildkit/" },
+          { label: "Trivy Scanner", url: "https://trivy.dev/" }
+        ]
+      },
+      {
+        n: 15, title: "Kubernetes Fundamentals & Internals", diff: "hard",
+        topics: [
+          "Kubernetes architecture: kube-apiserver, etcd, scheduler, controller-manager, kubelet, kube-proxy",
+          "etcd: Raft-based KV store, why it's the brain of K8s, compaction",
+          "Pod lifecycle: init containers, sidecar containers, postStart/preStop hooks",
+          "Scheduling: node affinity, pod affinity/anti-affinity, taints and tolerations",
+          "Resource requests vs limits: CPU throttling vs OOM kill behavior",
+          "ReplicaSet, Deployment, StatefulSet, DaemonSet — when each applies",
+          "Services: ClusterIP, NodePort, LoadBalancer, ExternalName, headless services",
+          "ConfigMaps and Secrets: environment injection vs volume mount, secret rotation",
+          "RBAC: ServiceAccount, Role, ClusterRole, RoleBinding — principle of least privilege",
+          "Networking model: every pod gets an IP, CNI plugins (Calico, Cilium, Flannel)",
+          "kube-proxy: iptables vs IPVS mode, service endpoint routing",
+          "Persistent storage: PV, PVC, StorageClass, dynamic provisioning"
+        ],
+        challenge: "Deploy your FastAPI app to a local K8s cluster (kind or minikube): Deployment with 3 replicas, ConfigMap for config, Secret for DB password, HPA based on CPU, Ingress with path routing, liveness/readiness probes, PVC for Postgres with StatefulSet. All YAML written by hand — no Helm yet.",
+        diff_label: "hard",
+        resources: [
+          { label: "Kubernetes Documentation", url: "https://kubernetes.io/docs/home/" },
+          { label: "K8s The Hard Way", url: "https://github.com/kelseyhightower/kubernetes-the-hard-way" },
+          { label: "K8s Networking Explained", url: "https://www.tkng.io/" }
+        ]
+      },
+      {
+        n: 16, title: "Kubernetes Production: Helm, GitOps & Advanced Patterns", diff: "hard",
+        topics: [
+          "Helm: chart structure, values.yaml, templating, hooks, rollbacks",
+          "Helm chart best practices: named templates, NOTES.txt, chart testing",
+          "GitOps with ArgoCD: app-of-apps pattern, sync policies, health checks",
+          "Kustomize: base + overlays, patches, generators, strategic merge",
+          "HPA: custom metrics scaling (KEDA), scale-to-zero with event-driven workloads",
+          "VPA (Vertical Pod Autoscaler): recommendation mode, off mode",
+          "Pod Disruption Budgets: ensuring availability during node drain",
+          "Network Policies: default deny, namespace isolation, pod-level firewall rules",
+          "OPA/Gatekeeper: admission control policies, constraint templates",
+          "Blue-green vs canary deployments with Argo Rollouts",
+          "Cluster autoscaler: node group configuration, scale-down safety",
+          "Multi-cluster patterns: cluster federation, geo-routing"
+        ],
+        challenge: "Package your entire application as a Helm chart with dev/staging/prod value files. Set up ArgoCD to auto-sync from a Git repo. Implement a canary rollout for the API service that automatically rolls back if error rate exceeds 5%. Configure network policies to isolate the database tier.",
+        diff_label: "hard",
+        resources: [
+          { label: "ArgoCD Documentation", url: "https://argo-cd.readthedocs.io/" },
+          { label: "KEDA Documentation", url: "https://keda.sh/docs/" },
+          { label: "Argo Rollouts", url: "https://argoproj.github.io/rollouts/" }
+        ]
+      },
+      {
+        n: 17, title: "Service Mesh: Istio & Envoy", diff: "hard",
+        topics: [
+          "Service mesh concept: sidecar proxy model, data plane vs control plane",
+          "Envoy proxy internals: listener, route, cluster, endpoint, filter chain",
+          "Istio control plane: Istiod (Pilot, Citadel, Galley merged)",
+          "mTLS everywhere: SPIFFE/SPIRE identity, certificate rotation",
+          "Traffic management: VirtualService, DestinationRule, Gateway, ServiceEntry",
+          "Canary routing with Istio: header-based routing, weight-based splitting",
+          "Circuit breaking: outlier detection, connection pool limits in Envoy",
+          "Retry and timeout policies at the mesh level",
+          "Distributed tracing: automatic context propagation via B3/W3C headers",
+          "Istio observability: access logs, metrics (Prometheus adapter), Kiali topology graph",
+          "Ambient mesh: sidecar-less Istio — ztunnel and waypoint proxies",
+          "Comparing Istio vs Linkerd vs Cilium service mesh"
+        ],
+        challenge: "Install Istio on your K8s cluster. Configure mTLS strict mode between services. Implement a canary deployment for your API where 10% of traffic goes to v2. Add a circuit breaker that opens when upstream latency exceeds 500ms. Generate the Kiali service graph and trace a request through Jaeger.",
+        diff_label: "hard",
+        resources: [
+          { label: "Istio Documentation", url: "https://istio.io/latest/docs/" },
+          { label: "Envoy Proxy Docs", url: "https://www.envoyproxy.io/docs/envoy/latest/" },
+          { label: "Istio in Practice", url: "https://istio-in-practice.com/" }
+        ]
+      },
+      {
+        n: 18, title: "CI/CD Pipelines & DevOps Automation", diff: "medium",
+        topics: [
+          "GitHub Actions: workflow syntax, reusable workflows, composite actions, matrix builds",
+          "Pipeline stages: lint → test → build → scan → push → deploy",
+          "Testing pyramid in CI: unit (fast) → integration (docker-compose) → e2e (staging only)",
+          "Docker layer caching in CI: GitHub Actions cache, BuildKit inline cache",
+          "Semantic versioning + automated changelog with Conventional Commits",
+          "Supply chain security: SBOM generation, image signing with Cosign, Sigstore",
+          "Environment promotion: PR → staging auto-deploy, production manual gate",
+          "Feature flags: LaunchDarkly/Unleash, trunk-based development, flag cleanup",
+          "Database migrations in CI/CD: zero-downtime migration strategy (expand/contract)",
+          "Rollback strategy: Helm rollback, database migration rollback, traffic shifting"
+        ],
+        challenge: "Build a full CI/CD pipeline for your app: PR triggers lint+test+security scan, merge to main auto-builds and pushes image with SHA tag, updates ArgoCD manifest in GitOps repo, deploys to staging, runs smoke tests, waits for manual promotion to production. Zero-downtime deploy with PDB.",
+        diff_label: "medium",
+        resources: [
+          { label: "GitHub Actions Docs", url: "https://docs.github.com/en/actions" },
+          { label: "Cosign / Sigstore", url: "https://docs.sigstore.dev/" },
+          { label: "Conventional Commits", url: "https://www.conventionalcommits.org/" }
+        ]
+      },
+      {
+        n: 19, title: "Cloud Architecture: AWS/GCP Core Services", diff: "medium",
+        topics: [
+          "VPC deep dive: subnets, route tables, NAT gateway, VPC peering, PrivateLink",
+          "IAM: roles vs users, policies (identity vs resource), permission boundaries, STS",
+          "EKS vs GKE vs AKS: managed control plane, node groups, Fargate/Autopilot",
+          "RDS: Multi-AZ vs read replicas, parameter groups, automated backups, PITR",
+          "ElastiCache: cluster mode enabled Redis, eviction policies, in-transit/at-rest encryption",
+          "S3: storage classes, lifecycle policies, versioning, cross-region replication, event notifications",
+          "Lambda: cold start optimization, provisioned concurrency, layers, VPC access",
+          "API Gateway: REST vs HTTP API, usage plans, WAF integration",
+          "CloudFront: cache behaviors, origin groups, Lambda@Edge vs CloudFront Functions",
+          "Cost optimization: Reserved vs Spot vs On-Demand, right-sizing, S3 Intelligent Tiering",
+          "Well-Architected Framework: five pillars — know each with concrete examples"
+        ],
+        challenge: "Deploy your application on AWS: EKS cluster in a private VPC, RDS Multi-AZ Postgres in private subnet, ElastiCache Redis, ALB with WAF, S3 for static assets with CloudFront. Use IAM roles for service accounts (IRSA). Estimate monthly cost. Achieve RTO < 1 hour using Multi-AZ failover.",
+        diff_label: "medium",
+        resources: [
+          { label: "AWS Well-Architected", url: "https://aws.amazon.com/architecture/well-architected/" },
+          { label: "AWS Documentation", url: "https://docs.aws.amazon.com/" },
+          { label: "Cloud Resume Challenge", url: "https://cloudresumechallenge.dev/" }
+        ]
+      }
+    ]
+  },
+  {
+    id: 5, label: "Phase 5", name: "Observability, Performance & Final Projects", days: "Days 20–30", badge: "p5-badge", border: "p5-border",
+    days_data: [
+      {
+        n: 20, title: "Observability Stack: Metrics with Prometheus & Grafana", diff: "medium",
+        topics: [
+          "Observability vs monitoring: the three pillars — metrics, logs, traces",
+          "Prometheus data model: time series, labels, cardinality explosion risk",
+          "Metric types: Counter, Gauge, Histogram, Summary — when each applies",
+          "PromQL: rate(), irate(), increase(), histogram_quantile(), label_replace()",
+          "Recording rules: pre-computing expensive queries for dashboard performance",
+          "Alerting rules: alert evaluation cycle, pending → firing states",
+          "AlertManager: routing, grouping, silencing, inhibition, PagerDuty/Slack integration",
+          "Grafana: dashboard design, variables, repeat panels, annotations",
+          "RED method: Rate, Error, Duration — for services",
+          "USE method: Utilization, Saturation, Errors — for resources",
+          "SLI/SLO/SLA: define SLOs for your service, error budget concept",
+          "Prometheus operator on K8s: ServiceMonitor, PodMonitor, PrometheusRule"
+        ],
+        challenge: "Instrument your FastAPI app with Prometheus: request rate, error rate, p50/p95/p99 latency, active connections, DB query duration, cache hit rate. Build a Grafana dashboard with RED + USE methods. Define SLOs (99.9% availability, p99 < 500ms). Create alerting rules that fire correctly under synthetic load.",
+        diff_label: "medium",
+        resources: [
+          { label: "Prometheus Docs", url: "https://prometheus.io/docs/" },
+          { label: "Grafana Dashboards", url: "https://grafana.com/docs/grafana/latest/" },
+          { label: "Google SRE Book (free)", url: "https://sre.google/sre-book/table-of-contents/" }
+        ]
+      },
+      {
+        n: 21, title: "Observability Stack: Logging & Distributed Tracing", diff: "medium",
+        topics: [
+          "Structured logging: JSON format, mandatory fields (timestamp, level, service, trace_id, user_id)",
+          "Log levels discipline: why DEBUG logs must not exist in production",
+          "ELK stack: Filebeat → Logstash → Elasticsearch → Kibana pipeline",
+          "Loki + Promtail: label-based log indexing, LogQL queries, cheaper than ELK",
+          "OpenTelemetry: the unified observability standard — traces, metrics, logs",
+          "Distributed tracing concepts: span, trace, parent-child relationships, sampling",
+          "W3C TraceContext: how trace IDs propagate across HTTP, Kafka, gRPC",
+          "Jaeger vs Zipkin vs Tempo: architecture comparison, storage backends",
+          "Auto-instrumentation vs manual spans: when to add custom spans",
+          "Trace-based testing: asserting on spans in integration tests",
+          "Correlation: linking a Grafana metric spike → Loki logs → Jaeger trace in one click",
+          "Distributed tracing sampling strategies: head-based, tail-based"
+        ],
+        challenge: "Set up full observability: structured logging to Loki, traces to Jaeger via OpenTelemetry SDK, metrics to Prometheus. Inject trace ID into logs. Build a Grafana dashboard that correlates an error spike to the exact trace. Write a runbook for the 3 most likely failure modes of your service.",
+        diff_label: "medium",
+        resources: [
+          { label: "OpenTelemetry Docs", url: "https://opentelemetry.io/docs/" },
+          { label: "Grafana Loki", url: "https://grafana.com/docs/loki/latest/" },
+          { label: "Jaeger Docs", url: "https://www.jaegertracing.io/docs/" }
+        ]
+      },
+      {
+        n: 22, title: "Performance Engineering & Profiling", diff: "hard",
+        topics: [
+          "Performance testing types: load test, stress test, soak test, spike test, chaos test",
+          "Latency vs throughput tradeoff: Little's Law (N = λ × W)",
+          "Flame graphs: reading CPU flame graphs, off-CPU flame graphs, memory flame graphs",
+          "py-spy: sampling profiler for Python — no code changes needed",
+          "Memory profiling: tracemalloc, memory_profiler, identifying memory leaks",
+          "Async profiling: identifying coroutines that block the event loop",
+          "Database query profiling: pg_stat_statements, slow query log, explain analyze",
+          "Linux performance tools: perf, strace, ltrace, vmstat, iostat, ss, tc",
+          "Network performance: TCP retransmits, connection queue depth, TIME_WAIT accumulation",
+          "GC pressure: Python gc module, garbage collection tuning, object allocation rate",
+          "Connection pool sizing: formula based on Little's Law + DB max connections",
+          "Caching impact measurement: before/after analysis with percentile histograms"
+        ],
+        challenge: "Take your full application stack and run a 10-minute soak test at 80% of breaking load with Locust. Generate a flame graph during the test. Find and fix 3 performance bottlenecks. Document: what you found, why it was slow, what you changed, and the measurable improvement in p99 latency.",
+        diff_label: "hard",
+        resources: [
+          { label: "Brendan Gregg's Site", url: "https://www.brendangregg.com/linuxperf.html" },
+          { label: "py-spy Profiler", url: "https://github.com/benfred/py-spy" },
+          { label: "Linux Performance Tools", url: "https://brendangregg.com/Perf/linux_perf_tools_full.svg" }
+        ]
+      },
+      {
+        n: 23, title: "Infrastructure as Code: Terraform & Ansible", diff: "medium",
+        topics: [
+          "Terraform: providers, resources, data sources, variables, outputs, locals",
+          "Terraform state: remote state in S3 + DynamoDB locking, state encryption",
+          "Terraform modules: reusable modules, module registry, versioning",
+          "Terragrunt: DRY Terraform configurations, environment promotion",
+          "Terraform workspaces vs directory-per-environment pattern",
+          "Import existing resources: terraform import, import blocks (Terraform 1.5+)",
+          "Drift detection: terraform plan in CI, alerting on unexpected changes",
+          "Ansible: inventory, playbooks, roles, handlers, templates (Jinja2)",
+          "Ansible for K8s: using k8s module, templating manifests, idempotency",
+          "Secret management in IaC: Vault, AWS Secrets Manager, SOPS",
+          "Pulumi: IaC with real programming languages — when to prefer over Terraform",
+          "Cost estimation: Infracost integration in CI for pull requests"
+        ],
+        challenge: "Write Terraform to provision your entire AWS environment: VPC, EKS, RDS, ElastiCache, S3, IAM roles. Use remote state with S3 backend and DynamoDB locking. Modularize into vpc/, eks/, rds/ modules. Add Infracost to your CI pipeline — cost estimate on every PR. Achieve idempotent apply (plan shows 0 changes after first apply).",
+        diff_label: "medium",
+        resources: [
+          { label: "Terraform Docs", url: "https://developer.hashicorp.com/terraform/docs" },
+          { label: "Terragrunt Docs", url: "https://terragrunt.gruntwork.io/docs/" },
+          { label: "Infracost", url: "https://www.infracost.io/docs/" }
+        ]
+      },
+      {
+        n: 24, title: "Chaos Engineering & Reliability", diff: "hard",
+        topics: [
+          "Reliability engineering fundamentals: availability math (99.9% = 8.7h downtime/year)",
+          "Failure modes analysis: FMEA for your service — what fails, how, impact",
+          "Chaos Monkey principle: regularly kill things in production before they kill you",
+          "LitmusChaos on K8s: pod kill, network latency, CPU hog, disk fill experiments",
+          "Steady-state hypothesis: define what normal looks like before injecting failures",
+          "Game days: structured failure exercises, blameless post-mortems",
+          "Bulkhead pattern: isolate failures, thread pool isolation per dependency",
+          "Fallback strategies: graceful degradation, static responses, feature disablement",
+          "Health check patterns: liveness vs readiness vs startup probes — correct usage",
+          "Disaster recovery planning: RTO and RPO definitions, backup testing frequency",
+          "Multi-region active-passive vs active-active: tradeoffs, cost, complexity",
+          "Blameless post-mortem: 5 whys, timeline, action items, no blame"
+        ],
+        challenge: "Run a chaos experiment on your K8s cluster: kill 1 pod of your 3-replica API, inject 100ms network latency to the DB, simulate a Redis failure. For each: verify the system recovers within your RTO, measure the impact on p99 latency, write a post-mortem. Fix any gaps in your resilience.",
+        diff_label: "hard",
+        resources: [
+          { label: "Chaos Engineering Book (free)", url: "https://www.oreilly.com/library/view/chaos-engineering/9781491988459/" },
+          { label: "LitmusChaos Docs", url: "https://docs.litmuschaos.io/" },
+          { label: "Google SRE Post-Mortem Culture", url: "https://sre.google/sre-book/postmortem-culture/" }
+        ]
+      },
+      {
+        n: 25, title: "Advanced Postgres: Replication, HA & Tuning", diff: "hard",
+        topics: [
+          "Postgres replication: physical (WAL streaming) vs logical replication",
+          "Synchronous vs asynchronous replication: tradeoffs, quorum commit",
+          "Patroni: automatic failover, leader election with etcd/Consul/ZooKeeper",
+          "PgBouncer deep dive: transaction pooling, connection limits, pgBouncer metrics",
+          "VACUUM internals: bloat accumulation, autovacuum tuning, manual VACUUM FULL",
+          "Postgres memory: shared_buffers, work_mem, effective_cache_size tuning",
+          "WAL archiving: continuous archiving to S3, PITR restore procedure",
+          "Table bloat: pg_bloat_check, pg_repack for online table bloat removal",
+          "Postgres extensions: pg_partman, TimescaleDB, pgvector, pg_trgm",
+          "Logical replication for zero-downtime migrations: replicate to new schema, cutover",
+          "Hot standby: read replicas for reporting queries, traffic routing with PgBouncer",
+          "Partitioning strategies for large tables: monthly partitions + retention automation"
+        ],
+        challenge: "Set up a 3-node Patroni cluster with etcd for leader election. Simulate a primary failure and verify automatic failover completes within 30 seconds. Configure PgBouncer in front with connection pooling. Run pg_bloat_check on a table with 5M rows, fix bloat with pg_repack online (no downtime).",
+        diff_label: "hard",
+        resources: [
+          { label: "Patroni Documentation", url: "https://patroni.readthedocs.io/" },
+          { label: "Postgres Tuning Guide", url: "https://pgtune.leopard.in.ua/" },
+          { label: "pg_repack", url: "https://reorg.github.io/pg_repack/" }
+        ]
+      },
+      {
+        n: 26, title: "Microservices Patterns & Service Decomposition", diff: "hard",
+        topics: [
+          "Microservice boundaries: Domain-Driven Design, bounded contexts, ubiquitous language",
+          "Strangler fig pattern: incrementally decomposing a monolith",
+          "Service decomposition by business capability vs subdomain",
+          "API contract testing: Pact framework, consumer-driven contract tests",
+          "Service discovery: DNS-based (K8s), client-side (Eureka), server-side (load balancer)",
+          "Distributed configuration: ConfigMap, Vault, AWS Parameter Store — hot reload",
+          "Health aggregation: /health endpoint with dependency status, liveness vs readiness",
+          "Synchronous vs asynchronous inter-service communication tradeoffs",
+          "Data ownership: each service owns its data, no direct DB sharing",
+          "Distributed caching across services: cache ownership, invalidation broadcast",
+          "Versioning microservice APIs: contract evolution, backward compatibility",
+          "Service mesh vs API gateway vs both: responsibilities, overlap, cost"
+        ],
+        challenge: "Decompose a monolithic blog platform into 4 microservices: User service, Post service, Comment service, Notification service. Each has its own database. Use event-driven communication (Kafka) for cross-service workflows. Write Pact contract tests between Post and Comment service. Deploy all to K8s with Istio mTLS.",
+        diff_label: "hard",
+        resources: [
+          { label: "Microservices.io Patterns", url: "https://microservices.io/patterns/" },
+          { label: "Pact Contract Testing", url: "https://docs.pact.io/" },
+          { label: "DDD Quickly (free PDF)", url: "https://www.infoq.com/minibooks/domain-driven-design-quickly/" }
+        ]
+      },
+      {
+        n: 27, title: "Search, Vector DBs & AI-Adjacent Backend", diff: "medium",
+        topics: [
+          "Elasticsearch deep dive: node roles, shard allocation, index lifecycle management (ILM)",
+          "Elasticsearch mappings: dynamic vs explicit, keyword vs text, nested vs object",
+          "Relevance tuning: BM25 parameters, function score, boosting by recency/popularity",
+          "Search as you type: edge ngram tokenizer, completion suggester, search_as_you_type field",
+          "Hybrid search: combining keyword (BM25) with vector similarity (kNN)",
+          "Vector databases: pgvector, Pinecone, Qdrant, Milvus — architecture comparison",
+          "Embedding models: when to use OpenAI embeddings vs local models (sentence-transformers)",
+          "Approximate nearest neighbor (ANN): HNSW algorithm, IVF index, recall vs speed tradeoff",
+          "RAG (Retrieval Augmented Generation) backend architecture",
+          "Semantic caching: cache LLM responses by embedding similarity, not exact match",
+          "Chunking strategies for RAG: fixed size vs semantic chunking, overlap",
+          "Rate limiting and cost control for external AI API calls"
+        ],
+        challenge: "Build a semantic search API: ingest 10K documents, generate embeddings with sentence-transformers, store in pgvector with HNSW index, expose a /search endpoint that returns top-10 results by cosine similarity. Add keyword search with Elasticsearch. Implement hybrid ranking (RRF). Measure and compare relevance quality.",
+        diff_label: "medium",
+        resources: [
+          { label: "Elasticsearch Guide", url: "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html" },
+          { label: "pgvector Docs", url: "https://github.com/pgvector/pgvector" },
+          { label: "Sentence Transformers", url: "https://sbert.net/" }
+        ]
+      },
+      {
+        n: 28, title: "Platform Engineering: Developer Experience & Internal Tools", diff: "medium",
+        topics: [
+          "Platform engineering concept: building the internal developer platform (IDP)",
+          "Golden path templates: Cookiecutter/Copier project scaffolding with best practices baked in",
+          "Backstage: software catalog, TechDocs, scaffolder plugins",
+          "Developer portal: service ownership, runbooks, on-call rotation, deployment history",
+          "Paved path vs golden path: enabling self-service without mandating it",
+          "Developer feedback loops: build time, test time, local dev experience (Tilt, Skaffold)",
+          "Tilt/Skaffold: live reloading in K8s dev environment, no Docker rebuild on code change",
+          "Environment management: ephemeral environments per PR, namespace-per-PR pattern",
+          "Internal CLI tooling: standardizing deployment commands, secret injection, log access",
+          "Documentation-as-code: ADRs (Architecture Decision Records), keeping docs in Git",
+          "DORA metrics: deployment frequency, lead time, MTTR, change failure rate",
+          "Measuring developer productivity: SPACE framework"
+        ],
+        challenge: "Build an internal developer platform feature: a CLI tool that provisions an ephemeral K8s namespace for a PR (with a namespace name matching the PR number), deploys the app stack, outputs the preview URL, and tears down on PR close. Use Python + Click. Integrate it into your GitHub Actions workflow.",
+        diff_label: "medium",
+        resources: [
+          { label: "Backstage Docs", url: "https://backstage.io/docs/" },
+          { label: "Tilt Docs", url: "https://docs.tilt.dev/" },
+          { label: "DORA Research", url: "https://dora.dev/" }
+        ]
+      },
+      {
+        n: 29, title: "Final Project Part 1: Real-Time Trading Platform Architecture", diff: "brutal",
+        topics: [
+          "Requirements analysis: 100K concurrent WebSocket connections, sub-5ms order processing, 99.99% availability",
+          "Order book design: price-time priority, matching engine algorithm (FIFO within price level)",
+          "WebSocket connection management: horizontal scaling challenge, sticky sessions vs shared state",
+          "Market data fan-out: single order book event → 100K subscribers efficiently (Redis Pub/Sub vs Kafka)",
+          "Order state machine: New → PartiallyFilled → Filled / Cancelled / Rejected",
+          "Risk checks: pre-trade validation (position limits, buying power, symbol halts)",
+          "Trade settlement: atomic inventory update on match, rollback on failure",
+          "Time synchronization: NTP, hardware timestamps, why clock skew matters in trading",
+          "Sequence numbers: ordering guarantees for market data, gap detection and replay",
+          "Back-pressure handling: slow consumer detection, connection throttling vs drop policy",
+          "Multi-region design: active-active trading regions, cross-region order deduplication",
+          "Regulatory requirements: audit log, order history retention, position reporting"
+        ],
+        challenge: "Design the complete architecture document: system diagram, data flow, component responsibilities, failure modes, capacity estimates, and technology choices with justifications. Then build the core: WebSocket server handling 10K connections, Redis Pub/Sub fan-out for order book updates, Postgres-backed order state machine with optimistic locking.",
+        diff_label: "brutal",
+        resources: [
+          { label: "LMAX Disruptor Pattern", url: "https://lmax-exchange.github.io/disruptor/" },
+          { label: "Low Latency Trading Talk (Jane Street)", url: "https://www.janestreet.com/tech-talks/" },
+          { label: "Martin Kleppmann - Designing Data-Intensive Apps", url: "https://dataintensive.net/" }
+        ]
+      },
+      {
+        n: 30, title: "Final Project Part 2: Production Deployment & Observability", diff: "brutal",
+        topics: [
+          "Deploy matching engine, WebSocket gateway, market data service to K8s",
+          "Load test: 10K concurrent WebSocket clients using k6 or Artillery, measure order latency p50/p99/p999",
+          "Full observability: Prometheus metrics (order rate, fill rate, connection count), Loki logs with trace correlation, Jaeger for full request trace",
+          "Chaos experiments: kill matching engine pod, simulate Redis failure, network partition between services",
+          "SLO definition and error budget dashboard in Grafana",
+          "Zero-downtime deployment for matching engine (tricky — must not lose in-flight orders)",
+          "Security audit: authentication for WebSocket connections, order ownership validation, DDOS protection",
+          "Post-mortem simulation: introduce a bug that causes order duplication, detect it via metrics/logs, write the post-mortem",
+          "Performance optimization: profiling the hot path (WebSocket message → order validation → match → broadcast)",
+          "Documentation: architecture decision records (ADRs) for 5 key design choices",
+          "Operational runbook: how to scale up, how to handle a matching engine crash, how to halt trading"
+        ],
+        challenge: "Ship it. Full production-grade system running on K8s, load tested to 10K concurrent connections with documented p99 latency, Grafana dashboard showing all RED metrics, Jaeger traces for every order lifecycle, chaos-tested with documented recovery procedures, and a 3-page architecture writeup you could present in a system design interview.",
+        diff_label: "brutal",
+        resources: [
+          { label: "k6 Load Testing", url: "https://k6.io/docs/" },
+          { label: "Artillery Docs", url: "https://www.artillery.io/docs" },
+          { label: "Google SRE Workbook (free)", url: "https://sre.google/workbook/table-of-contents/" }
+        ]
+      }
+    ]
+  }
+];
+function renderRoadmap() {
+    const container = document.getElementById('roadmap');
+    phases.forEach((phase, index) => {
+        const phaseGroup = document.createElement('div');
+        phaseGroup.className = 'phase-group';
+        phaseGroup.style.animationDelay = `${index * 0.1}s`;
+
+        const header = document.createElement('div');
+        header.className = 'phase-header';
+        header.innerHTML = `
+            <span class="phase-badge ${phase.badge}">${phase.label}</span>
+            <span class="phase-title">${phase.name}</span>
+            <span class="phase-days">${phase.days}</span>
+            <span class="chevron" id="ch-${phase.id}">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </span>
+        `;
+
+        const daysContainer = document.createElement('div');
+        daysContainer.className = 'days-container';
+        daysContainer.id = `days-${phase.id}`;
+
+        phase.days_data.forEach(day => {
+            const diffClass = `diff-${day.diff}`;
+            const card = document.createElement('div');
+            card.className = 'day-card';
+
+            const topicsHtml = day.topics.map(t => `<li>${t}</li>`).join('');
+            const resHtml = day.resources.map(r => 
+                `<a class="res-chip" href="${r.url}" target="_blank">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                    ${r.label}
+                </a>`
+            ).join('');
+
+            card.innerHTML = `
+                <div class="day-header" onclick="toggleDay(this)">
+                    <span class="day-num">DAY ${day.n}</span>
+                    <span class="day-title">${day.title}</span>
+                    <span class="day-diff ${diffClass}">${day.diff}</span>
+                    <span class="chevron">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </span>
+                </div>
+                <div class="day-body">
+                    <span class="section-label">Topics to Master</span>
+                    <ul class="topic-list">${topicsHtml}</ul>
+                    
+                    <span class="section-label">Daily Challenge</span>
+                    <div class="challenge-box">
+                        <p>${day.challenge}</p>
+                    </div>
+
+                    <span class="section-label">Curated Resources</span>
+                    <div class="resource-grid">${resHtml}</div>
+                </div>
+            `;
+            daysContainer.appendChild(card);
+        });
+
+        header.addEventListener('click', () => {
+            const ch = document.getElementById(`ch-${phase.id}`);
+            const content = document.getElementById(`days-${phase.id}`);
+            const isOpen = content.classList.contains('open');
+            
+            content.classList.toggle('open', !isOpen);
+            ch.classList.toggle('open', !isOpen);
+        });
+
+        phaseGroup.appendChild(header);
+        phaseGroup.appendChild(daysContainer);
+        container.appendChild(phaseGroup);
+    });
+}
+
+function toggleDay(headerEl) {
+    const body = headerEl.nextElementSibling;
+    const chevron = headerEl.querySelector('.chevron');
+    const isOpen = body.classList.contains('open');
+    
+    body.classList.toggle('open', !isOpen);
+    chevron.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+}
+
+renderRoadmap();
+</script>
+</body>
+</html>

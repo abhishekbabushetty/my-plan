@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>30-Day Backend Master Roadmap | Architect Level</title>
-    <meta name="description" content="A comprehensive, high-octane 30-day roadmap to mastering backend engineering, distributed systems, and cloud architecture.">
+    <title>100+ Day Backend Master Roadmap | Architect Level</title>
+    <meta name="description" content="A comprehensive, high-octane 110+ day roadmap to mastering backend engineering, distributed systems, and cloud architecture.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -30,6 +30,8 @@
             --p3: #f59e0b; --p3-glow: rgba(245, 158, 11, 0.2);
             --p4: #ef4444; --p4-glow: rgba(239, 68, 68, 0.2);
             --p5: #10b981; --p5-glow: rgba(16, 185, 129, 0.2);
+            --p6: #f97316; --p6-glow: rgba(249, 115, 22, 0.2);
+            --p7: #ec4899; --p7-glow: rgba(236, 72, 153, 0.2);
             
             --diff-brutal: #ff4d4d;
             --diff-hard: #fbbf24;
@@ -346,6 +348,8 @@
         .p3-badge { background: var(--p3-glow); color: var(--p3); border: 1px solid var(--p3); }
         .p4-badge { background: var(--p4-glow); color: var(--p4); border: 1px solid var(--p4); }
         .p5-badge { background: var(--p5-glow); color: var(--p5); border: 1px solid var(--p5); }
+        .p6-badge { background: var(--p6-glow); color: var(--p6); border: 1px solid var(--p6); }
+        .p7-badge { background: var(--p7-glow); color: var(--p7); border: 1px solid var(--p7); }
 
         .diff-brutal { color: var(--diff-brutal); border: 1px solid var(--diff-brutal); background: rgba(255, 77, 77, 0.1); }
         .diff-hard { color: var(--diff-hard); border: 1px solid var(--diff-hard); background: rgba(251, 191, 36, 0.1); }
@@ -370,9 +374,9 @@
 <body>
     <div class="container">
         <header class="hero">
-            <span class="hero-badge">30 Days • Architect Track</span>
+            <span class="hero-badge">120 Days • Architect Track</span>
             <h1>The Backend Master Roadmap</h1>
-            <p>From OSI layers to Distributed Systems. A high-octane engineering path for the elite 1%.</p>
+            <p>From OSI layers to Distributed Systems. A highly realistic engineering path for the elite 1%.</p>
         </header>
 
         <div id="roadmap"></div>
@@ -381,7 +385,7 @@
 <script>
 const phases = [
   {
-    id: 1, label: "Phase 1", name: "Networking, Protocols & API Design", days: "Days 1–5", badge: "p1-badge", border: "p1-border",
+    id: 1, label: "Phase 1", name: "Networking, Protocols & API Design", days: "Days 1–18", badge: "p1-badge", border: "p1-border",
     days_data: [
       {
         n: 1, title: "Raw Networking & HTTP from Scratch", diff: "brutal",
@@ -491,11 +495,33 @@ const phases = [
           { label: "MongoDB University", url: "https://learn.mongodb.com/" },
           { label: "Saga Pattern", url: "https://microservices.io/patterns/data/saga.html" }
         ]
+      },
+      {
+        n: 38, title: "Linux Internals & Systems Mastery", diff: "hard", day_range: "DAYS 16–18",
+        topics: [
+          "Linux process model: fork, exec, wait, zombie processes, orphan processes — how init reaps them",
+          "File descriptors: stdin/stdout/stderr, fd limits (ulimit -n), /proc/PID/fd, lsof",
+          "Linux signals: SIGTERM vs SIGKILL, SIGINT, SIGHUP — graceful shutdown handlers in Python",
+          "Memory: virtual vs physical, /proc/meminfo, OOM killer score, huge pages",
+          "File system internals: inodes, hard links vs symlinks, ext4 journal, /proc/filesystems",
+          "Linux networking tools: ss, ip, tc (traffic control), iptables, netstat — diagnose like an SRE",
+          "sysctl tuning: net.core.somaxconn, net.ipv4.tcp_tw_reuse, fs.file-max for high throughput servers",
+          "cgroups and namespaces: what Docker actually uses — PID, NET, MNT, UTS, IPC namespaces",
+          "epoll deep dive: EPOLLET (edge-triggered) vs EPOLLLT (level-triggered), epoll_wait internals",
+          "/proc and /sys: reading CPU stats, I/O stats, network counters — build a live system monitor"
+        ],
+        challenge: "Write a Python daemon that: (1) handles SIGTERM gracefully (finishes in-flight work then exits), (2) monitors its own /proc/self/fd to alert if it exceeds 80% of ulimit, (3) uses sysctl to raise the connection backlog and verify with ss. Run it under stress with wrk and use strace to observe every syscall.",
+        diff_label: "hard",
+        resources: [
+          { label: "Linux Programming Interface", url: "https://man7.org/tlpi/" },
+          { label: "Brendan Gregg Linux Tools", url: "https://www.brendangregg.com/linuxperf.html" },
+          { label: "The /proc Filesystem", url: "https://www.kernel.org/doc/html/latest/filesystems/proc.html" }
+        ]
       }
     ]
   },
   {
-    id: 2, label: "Phase 2", name: "Security, Auth & FastAPI", days: "Days 6–8", badge: "p2-badge", border: "p2-border",
+    id: 2, label: "Phase 2", name: "Security, Auth & FastAPI", days: "Days 19–27", badge: "p2-badge", border: "p2-border",
     days_data: [
       {
         n: 6, title: "Security & Cryptography from First Principles", diff: "brutal",
@@ -572,7 +598,7 @@ const phases = [
     ]
   },
   {
-    id: 3, label: "Phase 3", name: "Messaging, Event-Driven & System Design", days: "Days 9–13", badge: "p3-badge", border: "p3-border",
+    id: 3, label: "Phase 3", name: "Messaging, Event-Driven & System Design", days: "Days 28–42", badge: "p3-badge", border: "p3-border",
     days_data: [
       {
         n: 9, title: "Kafka & Event-Driven Architecture", diff: "hard",
@@ -692,7 +718,7 @@ const phases = [
     ]
   },
   {
-    id: 4, label: "Phase 4", name: "Containers, Kubernetes & Infrastructure", days: "Days 14–19", badge: "p4-badge", border: "p4-border",
+    id: 4, label: "Phase 4", name: "Containers, Kubernetes & Infrastructure", days: "Days 43–63", badge: "p4-badge", border: "p4-border",
     days_data: [
       {
         n: 14, title: "Docker & Containerization Deep Dive", diff: "medium",
@@ -833,11 +859,34 @@ const phases = [
           { label: "AWS Documentation", url: "https://docs.aws.amazon.com/" },
           { label: "Cloud Resume Challenge", url: "https://cloudresumechallenge.dev/" }
         ]
+      },
+      {
+        n: 39, title: "DNS Internals, Load Balancing & Traffic Engineering", diff: "hard", day_range: "DAYS 61–63",
+        topics: [
+          "DNS resolution chain: resolver → root → TLD → authoritative — trace it with dig +trace",
+          "DNS record types: A, AAAA, CNAME, MX, TXT, SRV, PTR — practical uses in backend infra",
+          "DNS TTL strategy: short TTLs for blue-green deploys, long TTLs for performance",
+          "Split-horizon DNS: internal vs external resolution — infrastructure isolation technique",
+          "Load balancing algorithms: round-robin, least connections, IP hash, weighted round-robin — tradeoffs",
+          "Layer 4 vs Layer 7 load balancing: TCP passthrough vs HTTP-aware routing decisions",
+          "Health checks: active vs passive, HTTP vs TCP vs gRPC health probes",
+          "Sticky sessions: cookie-based vs IP-hash affinity — when it breaks horizontal scaling",
+          "Global Server Load Balancing (GSLB): GeoDNS, Anycast, latency-based routing",
+          "Connection draining: graceful removal of a node from rotation — zero dropped connections",
+          "HAProxy deep dive: frontend/backend config, ACLs, stats page, connection limits"
+        ],
+        challenge: "Set up HAProxy as a Layer 7 load balancer for 3 FastAPI instances. Configure: weighted routing (50/30/20 split), health check with 2s interval, connection draining on removal, sticky sessions with cookies, and the stats dashboard. Simulate a rolling deploy by draining nodes one at a time — verify zero 502s.",
+        diff_label: "hard",
+        resources: [
+          { label: "HAProxy Docs", url: "https://www.haproxy.org/download/2.8/doc/configuration.txt" },
+          { label: "DNS in Detail", url: "https://howdns.works/" },
+          { label: "NGINX GSLB Guide", url: "https://docs.nginx.com/nginx/admin-guide/load-balancer/" }
+        ]
       }
     ]
   },
   {
-    id: 5, label: "Phase 5", name: "Observability, Performance & Final Projects", days: "Days 20–30", badge: "p5-badge", border: "p5-border",
+    id: 5, label: "Phase 5", name: "Observability, Performance & Final Projects", days: "Days 61–93", badge: "p5-badge", border: "p5-border",
     days_data: [
       {
         n: 20, title: "Observability Stack: Metrics with Prometheus & Grafana", diff: "medium",
@@ -1101,6 +1150,177 @@ const phases = [
           { label: "Artillery Docs", url: "https://www.artillery.io/docs" },
           { label: "Google SRE Workbook (free)", url: "https://sre.google/workbook/table-of-contents/" }
         ]
+      },
+      {
+        n: 40, title: "Data Engineering: Batch Pipelines & Stream Processing", diff: "hard", day_range: "DAYS 97–99",
+        topics: [
+          "ETL vs ELT: extract-transform-load vs extract-load-transform — when each is appropriate",
+          "Apache Spark fundamentals: DAG execution model, RDDs vs DataFrames, wide vs narrow transformations",
+          "Partitioning in Spark: partition count, shuffle operations (groupBy, join) — cost of data movement",
+          "Apache Airflow: DAGs, operators, sensors, XComs, backfill — orchestrating batch pipelines",
+          "dbt (data build tool): transform data in the warehouse using SQL, lineage graphs, tests",
+          "Lakehouse architecture: Delta Lake / Apache Iceberg — ACID on object storage",
+          "Change Data Capture (CDC): Debezium + Kafka Connect to stream DB changes to data warehouse",
+          "Data quality: Great Expectations framework — define and test data contracts automatically",
+          "Columnar formats: Parquet vs ORC vs Avro — when to use each, compression codecs",
+          "Data catalog & lineage: Apache Atlas, OpenMetadata — knowing where every column comes from",
+          "Backfilling pipelines safely: idempotent tasks, partition-based reruns, handling duplicates"
+        ],
+        challenge: "Build a full data pipeline: use Debezium to capture Postgres changes → Kafka → Spark Structured Streaming → write to Parquet in S3 → schedule a daily dbt job in Airflow that transforms it → add Great Expectations data quality checks that fail the pipeline on schema drift. Alert on failures via Slack.",
+        diff_label: "hard",
+        resources: [
+          { label: "Apache Spark Docs", url: "https://spark.apache.org/docs/latest/" },
+          { label: "Apache Airflow Docs", url: "https://airflow.apache.org/docs/" },
+          { label: "Debezium CDC", url: "https://debezium.io/documentation/" },
+          { label: "dbt Docs", url: "https://docs.getdbt.com/" }
+        ]
+      }
+    ]
+  },
+  {
+    id: 6, label: "Phase 6", name: "Enterprise, Compliance & Financial Engineering", days: "Days 100–108", badge: "p6-badge", border: "p6-border",
+    days_data: [
+      {
+        n: 31, title: "GDPR, Data Privacy & PII Engineering", diff: "hard",
+        topics: [
+          "GDPR fundamentals: lawful basis for processing, data minimization principle, purpose limitation",
+          "PII classification: direct (name, email, SSN) vs indirect (IP, device ID, location) identifiers",
+          "PII masking at the DB level: column-level encryption with pgcrypto, transparent data encryption (TDE)",
+          "Data pseudonymization: tokenization strategies — vault-based vs format-preserving encryption (FPE)",
+          "Right to be Forgotten: soft-delete vs hard-delete pipelines, cascading deletes across microservices and data lakes",
+          "Right to be Forgotten in event-sourced systems: event redaction, compaction, and the 'crypto-shredding' pattern",
+          "Data Subject Access Request (DSAR) automation: building a pipeline that collects PII from all services within 30 days",
+          "Consent management: storing timestamped consent records, consent withdrawal propagation",
+          "Data residency and data sovereignty: routing PII to region-locked storage (e.g., EU-only Postgres replica)",
+          "Audit logging for compliance: immutable audit log (append-only table or write to WORM S3 bucket)",
+          "Database roles and column-level security in Postgres: restricting PII column reads by service role",
+          "Data retention policies: automated expiry jobs, partitioned tables with DROP PARTITION for efficient bulk deletion",
+          "CCPA vs GDPR: understand key differences for US-based services",
+          "Privacy by Design: embedding privacy controls at the architecture stage, not as an afterthought",
+          "Sensitive data scanning: using tools like Presidio or AWS Macie to detect PII leaks in logs, S3, or DB dumps"
+        ],
+        challenge: "Build a GDPR compliance layer for a user service: (1) encrypt PII columns (email, phone, address) using pgcrypto with a per-user key stored in Vault; (2) implement a DSAR endpoint that aggregates user data from 3 services within 30 seconds; (3) implement a Right to be Forgotten endpoint that hard-deletes PII, replaces event-sourced payloads with a tombstone record, and verifies deletion via a compliance audit log. (4) Scan your application logs with Presidio to detect any accidental PII leakage.",
+        diff_label: "hard",
+        resources: [
+          { label: "GDPR Official Text", url: "https://gdpr-info.eu/" },
+          { label: "Microsoft Presidio (PII Detection)", url: "https://microsoft.github.io/presidio/" },
+          { label: "Crypto-Shredding Pattern", url: "https://developer.confluent.io/patterns/event-processing/crypto-shredding/" },
+          { label: "Postgres Column-Level Security", url: "https://www.postgresql.org/docs/current/ddl-rowsecurity.html" },
+          { label: "AWS Macie for PII Scanning", url: "https://aws.amazon.com/macie/" }
+        ]
+      },
+      {
+        n: 32, title: "Financial Engineering: Idempotency, Double-Entry & Monetary Precision", diff: "brutal",
+        topics: [
+          "Monetary arithmetic: why float/double is FORBIDDEN in finance — use Decimal, integer cents, or fixed-point arithmetic",
+          "Currency representation: ISO 4217, storing minor units (cents), multi-currency systems",
+          "Double-entry bookkeeping fundamentals: every transaction has a debit and a credit, the ledger always balances",
+          "Ledger schema design: accounts table, journal_entries table (double-entry), running balance vs recomputed balance",
+          "Immutable ledger: append-only journal — never UPDATE or DELETE a financial record",
+          "Idempotency keys: design, storage (unique constraint on idempotency_key), expiry, and replay behavior",
+          "Idempotency in HTTP APIs: how Stripe implements it — key stored, response cached, replayed on retry",
+          "Exactly-once payment processing: idempotency key + database unique constraint + Outbox pattern",
+          "Distributed money transfers: two-phase transfer (debit source, credit destination atomically) vs Saga with compensation",
+          "Race conditions in financial systems: optimistic locking (version column), SELECT FOR UPDATE, row-level locking",
+          "Preventing double-spend: advisory locks in Postgres for balance checks, Redis-based distributed locks as a fast path",
+          "Reconciliation: building a nightly reconciliation job that compares your ledger against payment gateway statements",
+          "Financial audit trail: who, what, when, why — every state change recorded with user, timestamp, and reason",
+          "Settlement batching: netting positions, batch settlement vs real-time gross settlement (RTGS)",
+          "Regulatory requirements: PCI-DSS scope reduction (tokenization), SOX compliance for audit trails"
+        ],
+        challenge: "Build a production-grade internal payments ledger: (1) Design a double-entry Postgres schema (accounts, journal_entries) where every transfer always balances and values are stored as integer cents; (2) Implement a /transfer endpoint with an idempotency key — it must be safe to call 100 times and only debit/credit once, verified by a unit test that fires 100 concurrent requests; (3) Implement optimistic locking on account balance updates — demonstrate that a concurrent double-spend attempt is rejected; (4) Build a daily reconciliation job that sums all journal entries per account and asserts the global ledger balance is zero (sum of all credits = sum of all debits). Stress test with 10K concurrent transfers and verify zero inconsistencies.",
+        diff_label: "brutal",
+        resources: [
+          { label: "Stripe Idempotency Keys", url: "https://stripe.com/docs/api/idempotent_requests" },
+          { label: "Double-Entry Bookkeeping (Martin Fowler)", url: "https://martinfowler.com/eaaDev/AccountingNarrative.html" },
+          { label: "Ledger by Numeral", url: "https://numeral.io/blog/double-entry-ledger-postgres" },
+          { label: "PCI-DSS Tokenization Guide", url: "https://www.pcisecuritystandards.org/documents/Tokenization_Guidelines_Info_Supplement.pdf" },
+          { label: "PostgreSQL Advisory Locks", url: "https://www.postgresql.org/docs/current/explicit-locking.html#ADVISORY-LOCKS" }
+        ]
+      }
+    ]
+  },
+  {
+    id: 7, label: "Phase 7", name: "High-Performance Systems, Modern Languages & The Future", days: "Days 109–126", badge: "p7-badge", border: "p7-border",
+    days_data: [
+      {
+        n: 33, title: "Go and High-Concurrency Networking", diff: "hard",
+        topics: [
+          "Go concurrency model: Goroutines, M:N scheduling, channels, select statements",
+          "Building a high-throughput TCP proxy in Go",
+          "Memory management in Go vs Python: garbage collection tuning basics",
+          "gRPC implementation in Go: bidirectional streaming performance",
+          "Writing a small distributed task queue in pure Go using Raft for leader election"
+        ],
+        challenge: "Build a generic load balancer in Go. It should route TCP traffic to 3 backend nodes, implement round-robin, passive health checks with automatic eviction, and utilize Go's lightweight routines for an overhead <1ms per request under 10k connections.",
+        diff_label: "hard",
+        resources: [
+          { label: "A Tour of Go", url: "https://go.dev/tour/welcome/1" },
+          { label: "Go Concurrency Patterns", url: "https://go.dev/blog/pipelines" }
+        ]
+      },
+      {
+        n: 34, title: "Rust, Memory Safety & Systems Programming", diff: "brutal",
+        topics: [
+          "Rust ownership model: borrowing, lifetimes, move semantics",
+          "Fearless concurrency in Rust: Arc, Mutex vs RwLock, Send and Sync traits",
+          "Building a hyper/tokio asynchronous HTTP server",
+          "Zero-cost abstractions and how rustc optimizes code",
+          "Interfacing with C libraries using FFI",
+          "Building WebAssembly (Wasm) modules using Rust to accelerate Node.js backends"
+        ],
+        challenge: "Write a high-performance HTTP JSON validation microservice in Rust using `tokio` and `serde`. Wrap business logic into a WebAssembly module that can also be executed in the browser. Benchmark memory usage and tail latencies compared to a Python equivalent.",
+        diff_label: "brutal",
+        resources: [
+          { label: "The Rust Programming Language", url: "https://doc.rust-lang.org/book/" },
+          { label: "Tokio Async Runtime", url: "https://tokio.rs/" }
+        ]
+      },
+      {
+        n: 35, title: "Web3, Serverless Edge & The Future", diff: "medium",
+        topics: [
+          "Smart Contracts vs Backend APIs: Solidity basics, EVM storage model",
+          "Signing payloads and crypto wallets (ECDSA, secp256k1 signatures)",
+          "Building a Web3 listener service that indexes Ethereum blockchain events into Postgres",
+          "Serverless Edge Compute: Cloudflare Workers, Deno Deploy, Fly.io",
+          "Scaling SQLite across the edge (LiteFS/Turso) for read-heavy edge workloads",
+          "WebSockets on the Edge vs stateful backend servers"
+        ],
+        challenge: "Deploy a highly available edge function using Cloudflare Workers that connects to a globally replicated SQLite database (Turso). Create a Web3 webhook listener that verifies EIP-712 digital signatures from user wallets, issues a JWT, and stores the session securely at the edge globally.",
+        diff_label: "medium",
+        resources: [
+          { label: "Solidity Docs", url: "https://docs.soliditylang.org/" },
+          { label: "Cloudflare Workers", url: "https://developers.cloudflare.com/workers/" },
+          { label: "Turso / Edge SQLite", url: "https://turso.tech/" }
+        ]
+      },
+      {
+        n: 36, title: "GraphQL Federation & API Scaling", diff: "hard",
+        topics: [
+          "Apollo Federation: combining multiple GraphQL APIs into a single supergraph",
+          "Entity resolution and cross-service schema stitching",
+          "GraphQL @defer and @stream for partial responses",
+          "Securing massive GraphQL schemas (query complexity analysis, depth limiting)"
+        ],
+        challenge: "Take 3 independent microservices (Users, Products, Reviews) and weave them together into a unified Apollo Federation endpoint. Implement a query complexity limiter that rejects queries deeper than 4 levels.",
+        diff_label: "hard",
+        resources: [
+          { label: "Apollo Federation Docs", url: "https://www.apollographql.com/docs/federation/" }
+        ]
+      },
+      {
+        n: 37, title: "Capstone: Open Source Contribution", diff: "medium",
+        topics: [
+          "Understanding large scale open source codebases",
+          "System design interview mastery overview",
+          "Writing excellent technical RFCs (Request for Comments)",
+          "Graduation: Moving from Consumer to Creator"
+        ],
+        challenge: "Find a real issue on a popular open source backend repository (e.g., FastAPI, Rust Tokio, or Kubernetes) and submit a well-tested Pull Request. Publish an architecture design (RFC) on your personal blog dissecting how a complex system feature of yours works.",
+        diff_label: "medium",
+        resources: [
+          { label: "How to Contribute to Open Source", url: "https://opensource.guide/how-to-contribute/" }
+        ]
       }
     ]
   }
@@ -1142,7 +1362,7 @@ function renderRoadmap() {
 
             card.innerHTML = `
                 <div class="day-header" onclick="toggleDay(this)">
-                    <span class="day-num">DAY ${day.n}</span>
+                    <span class="day-num">${day.day_range || `DAYS ${((day.n-1)*3)+1}–${day.n*3}`}</span>
                     <span class="day-title">${day.title}</span>
                     <span class="day-diff ${diffClass}">${day.diff}</span>
                     <span class="chevron">

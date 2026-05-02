@@ -657,14 +657,66 @@ body::before {
 }
 
 /* === IFRAME EMBED PAGES === */
-#cpp, #backend {
+#cpp, #backend, #curriculum {
   min-height: 100vh;
   padding: 0;
   display: none;
   flex-direction: column;
 }
-#cpp.active, #backend.active {
+#cpp.active, #backend.active, #curriculum.active {
   display: flex;
+}
+
+/* === AI SUB-CARDS === */
+.ai-sub-cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+.ai-sub-card {
+  position: relative;
+  background: var(--card-bg);
+  border: 1px solid rgba(0,245,255,0.15);
+  border-radius: 16px;
+  padding: 28px 36px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+.ai-sub-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,245,255,0.08), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.ai-sub-card:hover::before { opacity: 1; }
+.ai-sub-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: var(--electric);
+  box-shadow: 0 16px 40px rgba(0,245,255,0.2), 0 0 0 1px rgba(0,245,255,0.15);
+}
+.ai-sub-card .sc-icon { font-size: 38px; }
+.ai-sub-card .sc-label {
+  font-family: 'Black Ops One', cursive;
+  font-size: 16px;
+  letter-spacing: 1.5px;
+  color: white;
+}
+.ai-sub-card .sc-sub {
+  font-size: 11px;
+  color: var(--electric);
+  letter-spacing: 2.5px;
+  font-family: 'Share Tech Mono', monospace;
 }
 
 .iframe-back-bar {
@@ -880,6 +932,11 @@ body::before {
       <div class="card-label">30-DAY BACKEND</div>
       <div class="card-sub">ARCHITECT TRACK</div>
     </div>
+    <div class="home-card" onclick="showPage('curriculum')">
+      <span class="card-icon">📚</span>
+      <div class="card-label">CURRICULUM SITE</div>
+      <div class="card-sub">BACKEND DEEP DIVE</div>
+    </div>
   </div>
   <div class="home-quote">"DISCIPLINE IS DOING IT WHEN YOU DON'T FEEL LIKE IT."</div>
 </div>
@@ -929,6 +986,14 @@ body::before {
   </div>
 
   <div class="plan-body">
+    <!-- Sub-cards for AI page -->
+    <div class="ai-sub-cards">
+      <div class="ai-sub-card" onclick="showPage('curriculum')">
+        <span class="sc-icon">📚</span>
+        <div class="sc-label">CURRICULUM SITE</div>
+        <div class="sc-sub">BACKEND DEEP DIVE</div>
+      </div>
+    </div>
     <table class="ai-schedule-table" id="ai-schedule">
       <thead>
         <tr>
@@ -958,6 +1023,14 @@ body::before {
     <div class="back-btn" onclick="showPage('home')">← BACK TO BASE</div>
   </div>
   <iframe src="30_day_backend_roadmap.html" class="embed-frame" title="30-Day Backend Roadmap"></iframe>
+</div>
+
+<!-- CURRICULUM SITE PAGE -->
+<div id="curriculum" class="page">
+  <div class="iframe-back-bar">
+    <div class="back-btn" onclick="showPage('home')">← BACK TO BASE</div>
+  </div>
+  <iframe src="curriculum.html" class="embed-frame" title="Backend Engineering Curriculum"></iframe>
 </div>
 
 <!-- Completion popup -->
@@ -1346,6 +1419,7 @@ function showPage(id) {
   
   if (id === 'dsa') buildPlan();
   if (id === 'ai') buildAIPlan();
+  window.scrollTo(0, 0);
 }
 
 // === INIT ===
